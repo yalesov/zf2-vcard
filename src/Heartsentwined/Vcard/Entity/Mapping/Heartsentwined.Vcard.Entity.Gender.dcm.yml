@@ -1,0 +1,24 @@
+Heartsentwined\Vcard\Entity\Gender:
+    type: entity
+    table: he_vcard_gender
+    repositoryClass: Heartsentwined\Vcard\Repository\Gender
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        comment:
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Heartsentwined\Vcard\Entity\Param
+        vcard:
+            targetEntity: Heartsentwined\Vcard\Entity\Vcard
+            mappedBy: gender
+    manyToOne:
+        value:
+            targetEntity: Heartsentwined\Vcard\Entity\GenderValue
+            inversedBy: genders

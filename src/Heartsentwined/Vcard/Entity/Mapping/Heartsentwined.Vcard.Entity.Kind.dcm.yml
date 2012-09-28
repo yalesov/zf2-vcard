@@ -1,0 +1,23 @@
+Heartsentwined\Vcard\Entity\Kind:
+    type: entity
+    table: he_vcard_kind
+    repositoryClass: Heartsentwined\Vcard\Repository\Kind
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            # individual, group, org, location
+            # x-name, iana-token
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Heartsentwined\Vcard\Entity\Param
+    oneToMany:
+        vcards:
+            targetEntity: Heartsentwined\Vcard\Entity\Vcard
+            mappedBy: kind

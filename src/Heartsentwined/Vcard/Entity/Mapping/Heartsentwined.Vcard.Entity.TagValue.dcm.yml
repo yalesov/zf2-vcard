@@ -1,0 +1,15 @@
+Heartsentwined\Vcard\Entity\TagValue:
+    type: entity
+    table: he_vcard_tag_value
+    repositoryClass: Heartsentwined\Vcard\Repository\TagValue
+    indexes:
+        tag_value_value_idx:
+            columns: [value]
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: string

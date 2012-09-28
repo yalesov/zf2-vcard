@@ -1,0 +1,20 @@
+Heartsentwined\Vcard\Entity\Member:
+    type: entity
+    table: he_vcard_member
+    repositoryClass: Heartsentwined\Vcard\Repository\Member
+    indexes:
+        member_value_idx:
+            columns: [value]
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Heartsentwined\Vcard\Entity\Param

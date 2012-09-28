@@ -1,0 +1,12 @@
+Heartsentwined\Vcard\Entity\Meta:
+    type: entity
+    table: he_vcard_meta
+    repositoryClass: Heartsentwined\Vcard\Repository\Meta
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        status:
+            type: string

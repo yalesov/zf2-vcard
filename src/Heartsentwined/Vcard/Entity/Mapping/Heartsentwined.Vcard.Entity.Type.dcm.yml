@@ -1,0 +1,15 @@
+Heartsentwined\Vcard\Entity\Type:
+    type: entity
+    table: he_vcard_type
+    repositoryClass: Heartsentwined\Vcard\Repository\Type
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            # 'work'
+            # 'home'
+            # iana-token / x-name
+            type: string

@@ -1,0 +1,20 @@
+di:
+    instance:
+        alias:
+            vcard: Heartsentwined\Vcard\Service\Vcard
+            vcard-importer: Heartsentwined\Vcard\Service\Importer
+        vcard:
+            parameters: {}
+        vcard-importer:
+            parameters:
+                reader: Sabre\VObject\Reader
+doctrine:
+    driver:
+        vcard_driver:
+            class: Doctrine\ORM\Mapping\Driver\YamlDriver
+            cache: array
+            paths:
+                - __DIR__/../src/Heartsentwined/Vcard/Entity/Mapping
+        orm_default:
+            drivers:
+                Heartsentwined\Vcard\Entity: vcard_driver

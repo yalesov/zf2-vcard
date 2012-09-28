@@ -1,0 +1,17 @@
+Heartsentwined\Vcard\Entity\Photo:
+    type: entity
+    table: he_vcard_photo
+    repositoryClass: Heartsentwined\Vcard\Repository\Photo
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: text
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Heartsentwined\Vcard\Entity\Param

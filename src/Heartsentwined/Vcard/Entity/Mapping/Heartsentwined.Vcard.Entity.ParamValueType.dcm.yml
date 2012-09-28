@@ -1,0 +1,30 @@
+Heartsentwined\Vcard\Entity\ParamValueType:
+    type: entity
+    table: he_vcard_param_value_type
+    repositoryClass: Heartsentwined\Vcard\Repository\ParamValueType
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            # text
+            # uri
+            # date
+            # time
+            # date-time
+            # date-and-or-time
+            # timestamp
+            # boolean
+            # integer
+            # float
+            # utc-offset
+            # language-tag
+            # iana-token / x-name
+            type: string
+
+    oneToMany:
+        params:
+            targetEntity: Heartsentwined\Vcard\Entity\Param
+            mappedBy: valueType

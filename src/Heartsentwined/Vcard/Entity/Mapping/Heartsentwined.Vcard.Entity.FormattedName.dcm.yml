@@ -1,0 +1,20 @@
+Heartsentwined\Vcard\Entity\FormattedName:
+    type: entity
+    table: he_vcard_formatted_name
+    repositoryClass: Heartsentwined\Vcard\Repository\FormattedName
+    indexes:
+        formatted_name_value_idx:
+            columns: [value]
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Heartsentwined\Vcard\Entity\Param

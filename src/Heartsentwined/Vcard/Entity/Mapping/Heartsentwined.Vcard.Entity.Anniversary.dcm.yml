@@ -1,0 +1,19 @@
+Heartsentwined\Vcard\Entity\Anniversary:
+    type: entity
+    table: he_vcard_anniversary
+    repositoryClass: Heartsentwined\Vcard\Repository\Anniversary
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+
+    oneToOne:
+        param:
+            targetEntity: Heartsentwined\Vcard\Entity\Param
+        value:
+            targetEntity: Heartsentwined\Vcard\Entity\DateTimeText
+        vcard:
+            targetEntity: Heartsentwined\Vcard\Entity\Vcard
+            mappedBy: anniversary

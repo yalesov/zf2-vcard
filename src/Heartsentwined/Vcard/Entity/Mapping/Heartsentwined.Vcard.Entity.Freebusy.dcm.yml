@@ -1,0 +1,17 @@
+Heartsentwined\Vcard\Entity\Freebusy:
+    type: entity
+    table: he_vcard_freebusy
+    repositoryClass: Heartsentwined\Vcard\Repository\Freebusy
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Heartsentwined\Vcard\Entity\Param

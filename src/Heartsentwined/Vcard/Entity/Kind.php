@@ -2,8 +2,6 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Heartsentwined\Vcard\Entity\Kind
  */
@@ -36,11 +34,11 @@ class Kind
     {
         $this->vcards = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -50,20 +48,20 @@ class Kind
     /**
      * Set value
      *
-     * @param string $value
+     * @param  string $value
      * @return Kind
      */
     public function setValue($value)
     {
         $this->value = $value;
-    
+
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -73,20 +71,20 @@ class Kind
     /**
      * Set param
      *
-     * @param Heartsentwined\Vcard\Entity\Param $param
+     * @param  Heartsentwined\Vcard\Entity\Param $param
      * @return Kind
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-    
+
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param 
+     * @return Heartsentwined\Vcard\Entity\Param
      */
     public function getParam()
     {
@@ -96,13 +94,13 @@ class Kind
     /**
      * Add vcards
      *
-     * @param Heartsentwined\Vcard\Entity\Vcard $vcards
+     * @param  Heartsentwined\Vcard\Entity\Vcard $vcards
      * @return Kind
      */
     public function addVcard(\Heartsentwined\Vcard\Entity\Vcard $vcards)
     {
         $this->vcards[] = $vcards;
-    
+
         return $this;
     }
 
@@ -119,7 +117,7 @@ class Kind
     /**
      * Get vcards
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getVcards()
     {

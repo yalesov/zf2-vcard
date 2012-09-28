@@ -31,9 +31,9 @@ class Module implements AutoloaderProviderInterface
 
     public function onBootstrap(Event $e)
     {
-        $sm         = $e->getApplication()->getServiceManager();
-        $em         = $sm->get('doctrine.entitymanager.orm_default');
-        $vcard    = $sm->get('vcard');
+        $sm    = $e->getApplication()->getServiceManager();
+        $em    = $sm->get('doctrine.entitymanager.orm_default');
+        $vcard = $sm->get('vcard');
         $vcard
             ->setEm($em);
     }

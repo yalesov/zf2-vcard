@@ -2,8 +2,6 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Heartsentwined\Vcard\Entity\Vcard
  */
@@ -201,11 +199,11 @@ class Vcard
         $this->calendars = new \Doctrine\Common\Collections\ArrayCollection();
         $this->calendarRequests = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -215,20 +213,20 @@ class Vcard
     /**
      * Set gender
      *
-     * @param Heartsentwined\Vcard\Entity\Gender $gender
+     * @param  Heartsentwined\Vcard\Entity\Gender $gender
      * @return Vcard
      */
     public function setGender(\Heartsentwined\Vcard\Entity\Gender $gender = null)
     {
         $this->gender = $gender;
-    
+
         return $this;
     }
 
     /**
      * Get gender
      *
-     * @return Heartsentwined\Vcard\Entity\Gender 
+     * @return Heartsentwined\Vcard\Entity\Gender
      */
     public function getGender()
     {
@@ -238,20 +236,20 @@ class Vcard
     /**
      * Set uid
      *
-     * @param Heartsentwined\Vcard\Entity\Uid $uid
+     * @param  Heartsentwined\Vcard\Entity\Uid $uid
      * @return Vcard
      */
     public function setUid(\Heartsentwined\Vcard\Entity\Uid $uid = null)
     {
         $this->uid = $uid;
-    
+
         return $this;
     }
 
     /**
      * Get uid
      *
-     * @return Heartsentwined\Vcard\Entity\Uid 
+     * @return Heartsentwined\Vcard\Entity\Uid
      */
     public function getUid()
     {
@@ -261,20 +259,20 @@ class Vcard
     /**
      * Set birthday
      *
-     * @param Heartsentwined\Vcard\Entity\Birthday $birthday
+     * @param  Heartsentwined\Vcard\Entity\Birthday $birthday
      * @return Vcard
      */
     public function setBirthday(\Heartsentwined\Vcard\Entity\Birthday $birthday = null)
     {
         $this->birthday = $birthday;
-    
+
         return $this;
     }
 
     /**
      * Get birthday
      *
-     * @return Heartsentwined\Vcard\Entity\Birthday 
+     * @return Heartsentwined\Vcard\Entity\Birthday
      */
     public function getBirthday()
     {
@@ -284,20 +282,20 @@ class Vcard
     /**
      * Set anniversary
      *
-     * @param Heartsentwined\Vcard\Entity\Anniversary $anniversary
+     * @param  Heartsentwined\Vcard\Entity\Anniversary $anniversary
      * @return Vcard
      */
     public function setAnniversary(\Heartsentwined\Vcard\Entity\Anniversary $anniversary = null)
     {
         $this->anniversary = $anniversary;
-    
+
         return $this;
     }
 
     /**
      * Get anniversary
      *
-     * @return Heartsentwined\Vcard\Entity\Anniversary 
+     * @return Heartsentwined\Vcard\Entity\Anniversary
      */
     public function getAnniversary()
     {
@@ -307,20 +305,20 @@ class Vcard
     /**
      * Set kind
      *
-     * @param Heartsentwined\Vcard\Entity\Kind $kind
+     * @param  Heartsentwined\Vcard\Entity\Kind $kind
      * @return Vcard
      */
     public function setKind(\Heartsentwined\Vcard\Entity\Kind $kind = null)
     {
         $this->kind = $kind;
-    
+
         return $this;
     }
 
     /**
      * Get kind
      *
-     * @return Heartsentwined\Vcard\Entity\Kind 
+     * @return Heartsentwined\Vcard\Entity\Kind
      */
     public function getKind()
     {
@@ -330,13 +328,13 @@ class Vcard
     /**
      * Add sources
      *
-     * @param Heartsentwined\Vcard\Entity\Source $sources
+     * @param  Heartsentwined\Vcard\Entity\Source $sources
      * @return Vcard
      */
     public function addSource(\Heartsentwined\Vcard\Entity\Source $sources)
     {
         $this->sources[] = $sources;
-    
+
         return $this;
     }
 
@@ -353,7 +351,7 @@ class Vcard
     /**
      * Get sources
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSources()
     {
@@ -363,13 +361,13 @@ class Vcard
     /**
      * Add formattedNames
      *
-     * @param Heartsentwined\Vcard\Entity\FormattedName $formattedNames
+     * @param  Heartsentwined\Vcard\Entity\FormattedName $formattedNames
      * @return Vcard
      */
     public function addFormattedName(\Heartsentwined\Vcard\Entity\FormattedName $formattedNames)
     {
         $this->formattedNames[] = $formattedNames;
-    
+
         return $this;
     }
 
@@ -386,7 +384,7 @@ class Vcard
     /**
      * Get formattedNames
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getFormattedNames()
     {
@@ -396,13 +394,13 @@ class Vcard
     /**
      * Add names
      *
-     * @param Heartsentwined\Vcard\Entity\Name $names
+     * @param  Heartsentwined\Vcard\Entity\Name $names
      * @return Vcard
      */
     public function addName(\Heartsentwined\Vcard\Entity\Name $names)
     {
         $this->names[] = $names;
-    
+
         return $this;
     }
 
@@ -419,7 +417,7 @@ class Vcard
     /**
      * Get names
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getNames()
     {
@@ -429,13 +427,13 @@ class Vcard
     /**
      * Add nicknames
      *
-     * @param Heartsentwined\Vcard\Entity\Nickname $nicknames
+     * @param  Heartsentwined\Vcard\Entity\Nickname $nicknames
      * @return Vcard
      */
     public function addNickname(\Heartsentwined\Vcard\Entity\Nickname $nicknames)
     {
         $this->nicknames[] = $nicknames;
-    
+
         return $this;
     }
 
@@ -452,7 +450,7 @@ class Vcard
     /**
      * Get nicknames
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getNicknames()
     {
@@ -462,13 +460,13 @@ class Vcard
     /**
      * Add photos
      *
-     * @param Heartsentwined\Vcard\Entity\Photo $photos
+     * @param  Heartsentwined\Vcard\Entity\Photo $photos
      * @return Vcard
      */
     public function addPhoto(\Heartsentwined\Vcard\Entity\Photo $photos)
     {
         $this->photos[] = $photos;
-    
+
         return $this;
     }
 
@@ -485,7 +483,7 @@ class Vcard
     /**
      * Get photos
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getPhotos()
     {
@@ -495,13 +493,13 @@ class Vcard
     /**
      * Add addresses
      *
-     * @param Heartsentwined\Vcard\Entity\Address $addresses
+     * @param  Heartsentwined\Vcard\Entity\Address $addresses
      * @return Vcard
      */
     public function addAddresse(\Heartsentwined\Vcard\Entity\Address $addresses)
     {
         $this->addresses[] = $addresses;
-    
+
         return $this;
     }
 
@@ -518,7 +516,7 @@ class Vcard
     /**
      * Get addresses
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getAddresses()
     {
@@ -528,13 +526,13 @@ class Vcard
     /**
      * Add phones
      *
-     * @param Heartsentwined\Vcard\Entity\Phone $phones
+     * @param  Heartsentwined\Vcard\Entity\Phone $phones
      * @return Vcard
      */
     public function addPhone(\Heartsentwined\Vcard\Entity\Phone $phones)
     {
         $this->phones[] = $phones;
-    
+
         return $this;
     }
 
@@ -551,7 +549,7 @@ class Vcard
     /**
      * Get phones
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getPhones()
     {
@@ -561,13 +559,13 @@ class Vcard
     /**
      * Add emails
      *
-     * @param Heartsentwined\Vcard\Entity\Email $emails
+     * @param  Heartsentwined\Vcard\Entity\Email $emails
      * @return Vcard
      */
     public function addEmail(\Heartsentwined\Vcard\Entity\Email $emails)
     {
         $this->emails[] = $emails;
-    
+
         return $this;
     }
 
@@ -584,7 +582,7 @@ class Vcard
     /**
      * Get emails
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getEmails()
     {
@@ -594,13 +592,13 @@ class Vcard
     /**
      * Add ims
      *
-     * @param Heartsentwined\Vcard\Entity\Im $ims
+     * @param  Heartsentwined\Vcard\Entity\Im $ims
      * @return Vcard
      */
     public function addIm(\Heartsentwined\Vcard\Entity\Im $ims)
     {
         $this->ims[] = $ims;
-    
+
         return $this;
     }
 
@@ -617,7 +615,7 @@ class Vcard
     /**
      * Get ims
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getIms()
     {
@@ -627,13 +625,13 @@ class Vcard
     /**
      * Add urls
      *
-     * @param Heartsentwined\Vcard\Entity\Url $urls
+     * @param  Heartsentwined\Vcard\Entity\Url $urls
      * @return Vcard
      */
     public function addUrl(\Heartsentwined\Vcard\Entity\Url $urls)
     {
         $this->urls[] = $urls;
-    
+
         return $this;
     }
 
@@ -650,7 +648,7 @@ class Vcard
     /**
      * Get urls
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getUrls()
     {
@@ -660,13 +658,13 @@ class Vcard
     /**
      * Add languages
      *
-     * @param Heartsentwined\Vcard\Entity\Language $languages
+     * @param  Heartsentwined\Vcard\Entity\Language $languages
      * @return Vcard
      */
     public function addLanguage(\Heartsentwined\Vcard\Entity\Language $languages)
     {
         $this->languages[] = $languages;
-    
+
         return $this;
     }
 
@@ -683,7 +681,7 @@ class Vcard
     /**
      * Get languages
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getLanguages()
     {
@@ -693,13 +691,13 @@ class Vcard
     /**
      * Add timezones
      *
-     * @param Heartsentwined\Vcard\Entity\Timezone $timezones
+     * @param  Heartsentwined\Vcard\Entity\Timezone $timezones
      * @return Vcard
      */
     public function addTimezone(\Heartsentwined\Vcard\Entity\Timezone $timezones)
     {
         $this->timezones[] = $timezones;
-    
+
         return $this;
     }
 
@@ -716,7 +714,7 @@ class Vcard
     /**
      * Get timezones
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getTimezones()
     {
@@ -726,13 +724,13 @@ class Vcard
     /**
      * Add geos
      *
-     * @param Heartsentwined\Vcard\Entity\Geo $geos
+     * @param  Heartsentwined\Vcard\Entity\Geo $geos
      * @return Vcard
      */
     public function addGeo(\Heartsentwined\Vcard\Entity\Geo $geos)
     {
         $this->geos[] = $geos;
-    
+
         return $this;
     }
 
@@ -749,7 +747,7 @@ class Vcard
     /**
      * Get geos
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getGeos()
     {
@@ -759,13 +757,13 @@ class Vcard
     /**
      * Add titles
      *
-     * @param Heartsentwined\Vcard\Entity\Title $titles
+     * @param  Heartsentwined\Vcard\Entity\Title $titles
      * @return Vcard
      */
     public function addTitle(\Heartsentwined\Vcard\Entity\Title $titles)
     {
         $this->titles[] = $titles;
-    
+
         return $this;
     }
 
@@ -782,7 +780,7 @@ class Vcard
     /**
      * Get titles
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getTitles()
     {
@@ -792,13 +790,13 @@ class Vcard
     /**
      * Add roles
      *
-     * @param Heartsentwined\Vcard\Entity\Role $roles
+     * @param  Heartsentwined\Vcard\Entity\Role $roles
      * @return Vcard
      */
     public function addRole(\Heartsentwined\Vcard\Entity\Role $roles)
     {
         $this->roles[] = $roles;
-    
+
         return $this;
     }
 
@@ -815,7 +813,7 @@ class Vcard
     /**
      * Get roles
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {
@@ -825,13 +823,13 @@ class Vcard
     /**
      * Add logos
      *
-     * @param Heartsentwined\Vcard\Entity\Logo $logos
+     * @param  Heartsentwined\Vcard\Entity\Logo $logos
      * @return Vcard
      */
     public function addLogo(\Heartsentwined\Vcard\Entity\Logo $logos)
     {
         $this->logos[] = $logos;
-    
+
         return $this;
     }
 
@@ -848,7 +846,7 @@ class Vcard
     /**
      * Get logos
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getLogos()
     {
@@ -858,13 +856,13 @@ class Vcard
     /**
      * Add orgs
      *
-     * @param Heartsentwined\Vcard\Entity\Org $orgs
+     * @param  Heartsentwined\Vcard\Entity\Org $orgs
      * @return Vcard
      */
     public function addOrg(\Heartsentwined\Vcard\Entity\Org $orgs)
     {
         $this->orgs[] = $orgs;
-    
+
         return $this;
     }
 
@@ -881,7 +879,7 @@ class Vcard
     /**
      * Get orgs
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getOrgs()
     {
@@ -891,13 +889,13 @@ class Vcard
     /**
      * Add members
      *
-     * @param Heartsentwined\Vcard\Entity\Member $members
+     * @param  Heartsentwined\Vcard\Entity\Member $members
      * @return Vcard
      */
     public function addMember(\Heartsentwined\Vcard\Entity\Member $members)
     {
         $this->members[] = $members;
-    
+
         return $this;
     }
 
@@ -914,7 +912,7 @@ class Vcard
     /**
      * Get members
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getMembers()
     {
@@ -924,13 +922,13 @@ class Vcard
     /**
      * Add relations
      *
-     * @param Heartsentwined\Vcard\Entity\Relation $relations
+     * @param  Heartsentwined\Vcard\Entity\Relation $relations
      * @return Vcard
      */
     public function addRelation(\Heartsentwined\Vcard\Entity\Relation $relations)
     {
         $this->relations[] = $relations;
-    
+
         return $this;
     }
 
@@ -947,7 +945,7 @@ class Vcard
     /**
      * Get relations
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getRelations()
     {
@@ -957,13 +955,13 @@ class Vcard
     /**
      * Add tags
      *
-     * @param Heartsentwined\Vcard\Entity\Tag $tags
+     * @param  Heartsentwined\Vcard\Entity\Tag $tags
      * @return Vcard
      */
     public function addTag(\Heartsentwined\Vcard\Entity\Tag $tags)
     {
         $this->tags[] = $tags;
-    
+
         return $this;
     }
 
@@ -980,7 +978,7 @@ class Vcard
     /**
      * Get tags
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
@@ -990,13 +988,13 @@ class Vcard
     /**
      * Add notes
      *
-     * @param Heartsentwined\Vcard\Entity\Note $notes
+     * @param  Heartsentwined\Vcard\Entity\Note $notes
      * @return Vcard
      */
     public function addNote(\Heartsentwined\Vcard\Entity\Note $notes)
     {
         $this->notes[] = $notes;
-    
+
         return $this;
     }
 
@@ -1013,7 +1011,7 @@ class Vcard
     /**
      * Get notes
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getNotes()
     {
@@ -1023,13 +1021,13 @@ class Vcard
     /**
      * Add sounds
      *
-     * @param Heartsentwined\Vcard\Entity\Sound $sounds
+     * @param  Heartsentwined\Vcard\Entity\Sound $sounds
      * @return Vcard
      */
     public function addSound(\Heartsentwined\Vcard\Entity\Sound $sounds)
     {
         $this->sounds[] = $sounds;
-    
+
         return $this;
     }
 
@@ -1046,7 +1044,7 @@ class Vcard
     /**
      * Get sounds
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSounds()
     {
@@ -1056,13 +1054,13 @@ class Vcard
     /**
      * Add publicKeys
      *
-     * @param Heartsentwined\Vcard\Entity\PublicKey $publicKeys
+     * @param  Heartsentwined\Vcard\Entity\PublicKey $publicKeys
      * @return Vcard
      */
     public function addPublicKey(\Heartsentwined\Vcard\Entity\PublicKey $publicKeys)
     {
         $this->publicKeys[] = $publicKeys;
-    
+
         return $this;
     }
 
@@ -1079,7 +1077,7 @@ class Vcard
     /**
      * Get publicKeys
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getPublicKeys()
     {
@@ -1089,13 +1087,13 @@ class Vcard
     /**
      * Add freebusies
      *
-     * @param Heartsentwined\Vcard\Entity\Freebusy $freebusies
+     * @param  Heartsentwined\Vcard\Entity\Freebusy $freebusies
      * @return Vcard
      */
     public function addFreebusie(\Heartsentwined\Vcard\Entity\Freebusy $freebusies)
     {
         $this->freebusies[] = $freebusies;
-    
+
         return $this;
     }
 
@@ -1112,7 +1110,7 @@ class Vcard
     /**
      * Get freebusies
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getFreebusies()
     {
@@ -1122,13 +1120,13 @@ class Vcard
     /**
      * Add calendars
      *
-     * @param Heartsentwined\Vcard\Entity\Calendar $calendars
+     * @param  Heartsentwined\Vcard\Entity\Calendar $calendars
      * @return Vcard
      */
     public function addCalendar(\Heartsentwined\Vcard\Entity\Calendar $calendars)
     {
         $this->calendars[] = $calendars;
-    
+
         return $this;
     }
 
@@ -1145,7 +1143,7 @@ class Vcard
     /**
      * Get calendars
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getCalendars()
     {
@@ -1155,13 +1153,13 @@ class Vcard
     /**
      * Add calendarRequests
      *
-     * @param Heartsentwined\Vcard\Entity\CalendarRequest $calendarRequests
+     * @param  Heartsentwined\Vcard\Entity\CalendarRequest $calendarRequests
      * @return Vcard
      */
     public function addCalendarRequest(\Heartsentwined\Vcard\Entity\CalendarRequest $calendarRequests)
     {
         $this->calendarRequests[] = $calendarRequests;
-    
+
         return $this;
     }
 
@@ -1178,7 +1176,7 @@ class Vcard
     /**
      * Get calendarRequests
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getCalendarRequests()
     {

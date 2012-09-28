@@ -2,8 +2,6 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Heartsentwined\Vcard\Entity\Name
  */
@@ -55,11 +53,11 @@ class Name
         $this->prefixes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->suffixes = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,20 +67,20 @@ class Name
     /**
      * Set param
      *
-     * @param Heartsentwined\Vcard\Entity\Param $param
+     * @param  Heartsentwined\Vcard\Entity\Param $param
      * @return Name
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-    
+
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param 
+     * @return Heartsentwined\Vcard\Entity\Param
      */
     public function getParam()
     {
@@ -92,13 +90,13 @@ class Name
     /**
      * Add familyNames
      *
-     * @param Heartsentwined\Vcard\Entity\FamilyName $familyNames
+     * @param  Heartsentwined\Vcard\Entity\FamilyName $familyNames
      * @return Name
      */
     public function addFamilyName(\Heartsentwined\Vcard\Entity\FamilyName $familyNames)
     {
         $this->familyNames[] = $familyNames;
-    
+
         return $this;
     }
 
@@ -115,7 +113,7 @@ class Name
     /**
      * Get familyNames
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getFamilyNames()
     {
@@ -125,13 +123,13 @@ class Name
     /**
      * Add givenNames
      *
-     * @param Heartsentwined\Vcard\Entity\GivenName $givenNames
+     * @param  Heartsentwined\Vcard\Entity\GivenName $givenNames
      * @return Name
      */
     public function addGivenName(\Heartsentwined\Vcard\Entity\GivenName $givenNames)
     {
         $this->givenNames[] = $givenNames;
-    
+
         return $this;
     }
 
@@ -148,7 +146,7 @@ class Name
     /**
      * Get givenNames
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getGivenNames()
     {
@@ -158,13 +156,13 @@ class Name
     /**
      * Add additionalNames
      *
-     * @param Heartsentwined\Vcard\Entity\AdditionalName $additionalNames
+     * @param  Heartsentwined\Vcard\Entity\AdditionalName $additionalNames
      * @return Name
      */
     public function addAdditionalName(\Heartsentwined\Vcard\Entity\AdditionalName $additionalNames)
     {
         $this->additionalNames[] = $additionalNames;
-    
+
         return $this;
     }
 
@@ -181,7 +179,7 @@ class Name
     /**
      * Get additionalNames
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getAdditionalNames()
     {
@@ -191,13 +189,13 @@ class Name
     /**
      * Add prefixes
      *
-     * @param Heartsentwined\Vcard\Entity\Prefix $prefixes
+     * @param  Heartsentwined\Vcard\Entity\Prefix $prefixes
      * @return Name
      */
     public function addPrefixe(\Heartsentwined\Vcard\Entity\Prefix $prefixes)
     {
         $this->prefixes[] = $prefixes;
-    
+
         return $this;
     }
 
@@ -214,7 +212,7 @@ class Name
     /**
      * Get prefixes
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getPrefixes()
     {
@@ -224,13 +222,13 @@ class Name
     /**
      * Add suffixes
      *
-     * @param Heartsentwined\Vcard\Entity\Suffix $suffixes
+     * @param  Heartsentwined\Vcard\Entity\Suffix $suffixes
      * @return Name
      */
     public function addSuffixe(\Heartsentwined\Vcard\Entity\Suffix $suffixes)
     {
         $this->suffixes[] = $suffixes;
-    
+
         return $this;
     }
 
@@ -247,7 +245,7 @@ class Name
     /**
      * Get suffixes
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getSuffixes()
     {

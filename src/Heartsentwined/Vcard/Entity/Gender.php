@@ -2,8 +2,6 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Heartsentwined\Vcard\Entity\Gender
  */
@@ -34,11 +32,10 @@ class Gender
      */
     private $value;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -48,20 +45,20 @@ class Gender
     /**
      * Set comment
      *
-     * @param string $comment
+     * @param  string $comment
      * @return Gender
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
-    
+
         return $this;
     }
 
     /**
      * Get comment
      *
-     * @return string 
+     * @return string
      */
     public function getComment()
     {
@@ -71,20 +68,20 @@ class Gender
     /**
      * Set param
      *
-     * @param Heartsentwined\Vcard\Entity\Param $param
+     * @param  Heartsentwined\Vcard\Entity\Param $param
      * @return Gender
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-    
+
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param 
+     * @return Heartsentwined\Vcard\Entity\Param
      */
     public function getParam()
     {
@@ -94,20 +91,20 @@ class Gender
     /**
      * Set vcard
      *
-     * @param Heartsentwined\Vcard\Entity\Vcard $vcard
+     * @param  Heartsentwined\Vcard\Entity\Vcard $vcard
      * @return Gender
      */
     public function setVcard(\Heartsentwined\Vcard\Entity\Vcard $vcard = null)
     {
         $this->vcard = $vcard;
-    
+
         return $this;
     }
 
     /**
      * Get vcard
      *
-     * @return Heartsentwined\Vcard\Entity\Vcard 
+     * @return Heartsentwined\Vcard\Entity\Vcard
      */
     public function getVcard()
     {
@@ -117,20 +114,20 @@ class Gender
     /**
      * Set value
      *
-     * @param Heartsentwined\Vcard\Entity\GenderValue $value
+     * @param  Heartsentwined\Vcard\Entity\GenderValue $value
      * @return Gender
      */
     public function setValue(\Heartsentwined\Vcard\Entity\GenderValue $value = null)
     {
         $this->value = $value;
-    
+
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return Heartsentwined\Vcard\Entity\GenderValue 
+     * @return Heartsentwined\Vcard\Entity\GenderValue
      */
     public function getValue()
     {

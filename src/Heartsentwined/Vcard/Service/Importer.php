@@ -405,7 +405,7 @@ class Importer
      *
      * @return self
      */
-    public function importX-AIM ()
+    public function importIm()
     {
         // not yet implemented
     }

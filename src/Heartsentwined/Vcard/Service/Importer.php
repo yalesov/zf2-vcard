@@ -98,12 +98,12 @@ class Importer
     }
 
     /**
-     * normalize vcard string for parsing
+     * normalize vcard source for parsing
      *
      * @param  string $vcardStr
      * @return string
      */
-    public function normalize($vcardStr)
+    public function normalizeSource($vcardStr)
     {
         ArgValidator::assert($vcardStr, 'string');
 
@@ -128,11 +128,11 @@ class Importer
     }
 
     /**
-     * parse vcard string into intermediate object
+     * parse vcard source into intermediate object
      *
      * @return Node|null
      */
-    public function parse($vcardStr)
+    public function parseSource($vcardStr)
     {
         ArgValidator::assert($vcardStr, 'string');
 
@@ -151,7 +151,7 @@ class Importer
      * @param  Property     $entitySrc
      * @return Entity\Param
      */
-    public function param(Property $property)
+    public function importParam(Property $property)
     {
         static $paramMap = array(
             'ALTID'     => 'AltId',

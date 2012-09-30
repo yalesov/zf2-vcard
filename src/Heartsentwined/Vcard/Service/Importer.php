@@ -223,4 +223,29 @@ class Importer
 
         return $param;
     }
+
+    /**
+     * for generic entries that can have multiple instances
+     *
+     * @param Property $property
+     * @param string   $entityName
+     *  for Heartsentwined\Vcard\Entity\Foo, pass in 'foo'
+     * @return Entity\*[]
+     */
+    public function importMultipleInstances(Property $property, $entityName)
+    {
+        $em = $this->getEm();
+        $entities = array();
+        foreach ($property as $eachProperty) {
+            $entityClass = "Heartsentwined\\Vcard\Entity\\$entityName";
+            $entity = new $entityClass;
+            $em->persist($entity);
+            $entity
+                ->setValue((string) $eachProperty)
+                ->setParam($this->importParam($eachProperty));
+            $entities[] = $entity;
+        }
+
+        return $entities;
+    }
 }

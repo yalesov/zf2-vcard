@@ -196,4 +196,27 @@ STR
         $this->assertEmpty($param->getValueType());
         $this->assertCount(0, $param->getTypes());
     }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportMultipleInstances()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ORG;LANGUAGE=foo:foo
+ORG;LANGUAGE=bar:bar
+END:VCARD
+STR
+        );
+
+        $orgs = $this->importer->importMultipleInstances($card->ORG, 'Org');
+        $this->assertCount(2, $orgs);
+
+        $foo = $orgs[0];
+        $bar = $orgs[1];
+
+        $this->assertSame('foo', $foo->getValue());
+        $this->assertSame('bar', $bar->getValue());
+    }
 }

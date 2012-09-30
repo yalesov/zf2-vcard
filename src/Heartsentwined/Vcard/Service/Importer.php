@@ -227,16 +227,16 @@ class Importer
     /**
      * multiple instances properties
      *
-     * @param Property $property
-     * @param string   $entityName
-     *  for Heartsentwined\Vcard\Entity\Foo, pass in 'foo'
+     * @param  Property   $property
+     * @param  string     $entityClass
      * @return Entity\*[]
      */
-    public function importMultiple(Property $property, $entityName)
+    public function importMultiple(Property $property, $entityClass)
     {
+        ArgValidator::assertClass($entityClass);
+
         $em = $this->getEm();
         $entities = array();
-        $entityClass = 'Heartsentwined\Vcard\Entity\\'.$entityName;
         foreach ($property as $eachProperty) {
             $entity = new $entityClass;
             $em->persist($entity);
@@ -252,17 +252,17 @@ class Importer
     /**
      * single instance properties
      *
-     * @param Property $property
-     * @param string   $entityName
-     *  for Heartsentwined\Vcard\Entity\Foo, pass in 'foo'
+     * @param  Property $property
+     * @param  string   $entityClass
      * @return Entity\*
      */
-    public function importSingle(Property $property, $entityName)
+    public function importSingle(Property $property, $entityClass)
     {
+        ArgValidator::assertClass($entityClass);
+
         //get first instance
         foreach ($property as $property) { break; }
 
-        $entityClass = 'Heartsentwined\Vcard\Entity\\'.$entityName;
         $entity = new $entityClass;
         $this->getEm()->persist($entity);
         $entity

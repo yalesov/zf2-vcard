@@ -210,7 +210,8 @@ END:VCARD
 STR
         );
 
-        $orgs = $this->importer->importMultiple($card->ORG, 'Org');
+        $orgs = $this->importer->importMultiple(
+            $card->ORG, 'Heartsentwined\Vcard\Entity\Org');
         $this->assertCount(2, $orgs);
 
         $foo = $orgs[0];
@@ -233,7 +234,8 @@ END:VCARD
 STR
         );
 
-        $foo = $this->importer->importSingle($card->ORG, 'Org');
+        $foo = $this->importer->importSingle(
+            $card->ORG, 'Heartsentwined\Vcard\Entity\Org');
         $this->assertSame('foo', $foo->getValue());
     }
 }

@@ -144,4 +144,83 @@ class Importer
 
         return $card;
     }
+
+    /**
+     * helper function to import common parameters
+     *
+     * @param  Property     $entitySrc
+     * @return Entity\Param
+     */
+    public function param(Property $property)
+    {
+        static $paramMap = array(
+            'ALTID'     => 'AltId',
+            'GEO'       => 'Geo',
+            'LABEL'     => 'Label',
+            'LANGUAGE'  => 'Language',
+            'MEDIATYPE' => 'MediaType',
+            'PREF'      => 'Pref',
+            'SORT-AS'   => 'SortAs',
+            'TZ'        => 'Timezone',
+        );
+
+        static $em;
+        static $typeRepo;
+        static $typeMap = array();
+        static $valueTypeRepo;
+        static $valueTypeMap = array();
+
+        if (empty($em)) {
+            $em = $this->getEm();
+        }
+        if (empty($typeRepo) || empty($valueTypeRepo)) {
+            $typeRepo =
+                $em->getRepository('Heartsentwined\Vcard\Entity\Type');
+            $valueTypeRepo =
+                $em->getRepository('Heartsentwined\Vcard\Entity\ParamValueType');
+        }
+
+        $param = new Entity\Param;
+        $em->persist($param);
+
+        foreach ($paramMap as $paramName => $propertyName) {
+            $func = "set$propertyName";
+            $param->$func((string) $property[$paramName]);
+        }
+
+        $value = (string) $property['VALUE'];
+        if (!empty($value)) {
+            if (isset($valueTypeMap[$value])) {
+                $valueType = $valueTypeMap[$value];
+            } elseif (!$valueType = $valueTypeRepo
+                ->findOneBy(array('value' => $value))) {
+                $valueType = new Entity\ParamValueType;
+                $em->persist($valueType);
+                $valueType->setValue($value);
+                $valueTypeMap[$value] = $valueType;
+            }
+            $param->setValueType($valueType);
+        }
+
+        if (isset($property['TYPE']) && count($property['TYPE'])) {
+            foreach ($property['TYPE'] as $eachType) {
+                foreach (explode(',', $eachType) as $typeSrc) {
+                    if ($typeSrc === '') continue;
+
+                    if (isset($typeMap[$typeSrc])) {
+                        $type = $typeMap[$typeSrc];
+                    } elseif (!$type = $typeRepo
+                        ->findOneBy(array('value' => $typeSrc))) {
+                        $type = new Entity\Type;
+                        $em->persist($type);
+                        $type->setValue($typeSrc);
+                        $typeMap[$typeSrc] = $type;
+                    }
+                    $param->addType($type);
+                }
+            }
+        }
+
+        return $param;
+    }
 }

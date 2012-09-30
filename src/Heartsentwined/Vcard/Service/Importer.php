@@ -225,7 +225,7 @@ class Importer
     }
 
     /**
-     * for generic entries that can have multiple instances
+     * multiple instances properties
      *
      * @param Property $property
      * @param string   $entityName
@@ -250,7 +250,7 @@ class Importer
     }
 
     /**
-     * for generic entries that can only have one instance
+     * single instance properties
      *
      * @param Property $property
      * @param string   $entityName

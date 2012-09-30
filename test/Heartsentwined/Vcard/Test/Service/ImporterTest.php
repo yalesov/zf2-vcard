@@ -1,6 +1,7 @@
 <?php
 namespace Heartsentwined\Vcard\Test\Service;
 
+use Heartsentwined\Vcard\Entity;
 use Heartsentwined\Vcard\Service\Importer;
 use Heartsentwined\Phpunit\Testcase\Doctrine as DoctrineTestcase;
 
@@ -15,6 +16,7 @@ class ImporterTest extends DoctrineTestcase
         parent::setUp();
 
         $this->importer = $this->sm->get('vcard-importer')
+            ->setEm($this->em)
             ->setReader($this->sm->get('Sabre\VObject\Reader'));
     }
 

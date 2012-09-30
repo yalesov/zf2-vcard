@@ -1,15 +1,33 @@
 <?php
 namespace Heartsentwined\Vcard\Service;
 
+use Doctrine\ORM\EntityManager;
 use Heartsentwined\ArgValidator\ArgValidator;
 use Heartsentwined\Utf8\Utf8;
 use Heartsentwined\Vcard\Entity;
 use Sabre\VObject\Node;
 use Sabre\VObject\ParseException;
+use Sabre\VObject\Property;
 use Sabre\VObject\Reader;
 
 class Importer
 {
+    /**
+     * ORM Entity Manager
+     *
+     * @var EntityManager
+     */
+    protected $em;
+    public function setEm(EntityManager $em)
+    {
+        $this->em = $em;
+
+        return $this;
+    }
+    public function getEm()
+    {
+        return $this->em;
+    }
     /**
      * vcard source string
      *
@@ -68,6 +86,16 @@ class Importer
      * @var Entity\Vcard
      */
     protected $vcard;
+    public function setVcard(Entity\Vcard $vcard)
+    {
+        $this->vcard = $vcard;
+
+        return $this;
+    }
+    public function getVcard()
+    {
+        return $this->vcard;
+    }
 
     /**
      * normalize vcard string for parsing

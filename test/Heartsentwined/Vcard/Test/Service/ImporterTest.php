@@ -31,8 +31,15 @@ class ImporterTest extends DoctrineTestcase
         $this->assertSame('', $this->importer->normalize(''));
         $this->assertSame("BEGIN:\né",
             $this->importer->normalize("BEGIN:\n<u+00e9>"));
-        $this->assertSame("BEGIN:\n e",
-            $this->importer->normalize("BEGIN:\n   e"));
+        $this->assertSame(<<<STR
+BEGIN:VCARD
+ foo
+STR
+            , $this->importer->normalize(<<<STR
+BEGIN:VCARD
+        foo
+STR
+        ));
     }
 
     public function testParse()

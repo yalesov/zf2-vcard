@@ -12,11 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class Kind extends EntityRepository
 {
-    const DEF           = 'individual';
-
-    const INDIVIDUAL    = 'individual';
-    const GROUP         = 'group';
-    const ORG           = 'org';
-    const ORGANIZATION  = 'org'; // alias
-    const LOCATION      = 'location';
 }

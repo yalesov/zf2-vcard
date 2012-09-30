@@ -8,11 +8,6 @@ Heartsentwined\Vcard\Entity\Kind:
             type: integer
             generator:
                 strategy: AUTO
-        value:
-            # individual, group, org, location
-            # x-name, iana-token
-            type: string
-            nullable: true
 
     oneToOne:
         param:
@@ -21,3 +16,7 @@ Heartsentwined\Vcard\Entity\Kind:
         vcards:
             targetEntity: Heartsentwined\Vcard\Entity\Vcard
             mappedBy: kind
+    manyToOne:
+        value:
+            targetEntity: Heartsentwined\Vcard\Entity\KindValue
+            inversedBy: kinds

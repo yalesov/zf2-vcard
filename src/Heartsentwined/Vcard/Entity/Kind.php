@@ -13,11 +13,6 @@ class Kind
     private $id;
 
     /**
-     * @var string $value
-     */
-    private $value;
-
-    /**
      * @var Heartsentwined\Vcard\Entity\Param
      */
     private $param;
@@ -26,6 +21,11 @@ class Kind
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     private $vcards;
+
+    /**
+     * @var Heartsentwined\Vcard\Entity\KindValue
+     */
+    private $value;
 
     /**
      * Constructor
@@ -43,29 +43,6 @@ class Kind
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set value
-     *
-     * @param  string $value
-     * @return Kind
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get value
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->value;
     }
 
     /**
@@ -122,5 +99,28 @@ class Kind
     public function getVcards()
     {
         return $this->vcards;
+    }
+
+    /**
+     * Set value
+     *
+     * @param  Heartsentwined\Vcard\Entity\KindValue $value
+     * @return Kind
+     */
+    public function setValue(\Heartsentwined\Vcard\Entity\KindValue $value = null)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return Heartsentwined\Vcard\Entity\KindValue
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 }

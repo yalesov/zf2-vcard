@@ -248,4 +248,27 @@ class Importer
 
         return $entities;
     }
+
+    /**
+     * for generic entries that can only have one instance
+     *
+     * @param Property $property
+     * @param string   $entityName
+     *  for Heartsentwined\Vcard\Entity\Foo, pass in 'foo'
+     * @return Entity\*
+     */
+    public function importSingleInstance(Property $property, $entityName)
+    {
+        //get first instance
+        foreach ($property as $property) { break; }
+
+        $entityClass = "Heartsentwined\\Vcard\Entity\\$entityName";
+        $entity = new $entityClass;
+        $this->getEm()->persist($entity);
+        $entity
+            ->setValue((string) $property)
+            ->setParam($this->importParam($property));
+
+        return $entity;
+    }
 }

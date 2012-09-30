@@ -219,4 +219,21 @@ STR
         $this->assertSame('foo', $foo->getValue());
         $this->assertSame('bar', $bar->getValue());
     }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportSingleInstance()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ORG;LANGUAGE=foo:foo
+ORG;LANGUAGE=bar:bar
+END:VCARD
+STR
+        );
+
+        $foo = $this->importer->importSingleInstance($card->ORG, 'Org');
+        $this->assertSame('foo', $foo->getValue());
+    }
 }

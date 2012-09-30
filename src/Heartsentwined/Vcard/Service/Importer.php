@@ -236,8 +236,8 @@ class Importer
     {
         $em = $this->getEm();
         $entities = array();
+        $entityClass = 'Heartsentwined\Vcard\Entity\\'.$entityName;
         foreach ($property as $eachProperty) {
-            $entityClass = "Heartsentwined\\Vcard\Entity\\$entityName";
             $entity = new $entityClass;
             $em->persist($entity);
             $entity
@@ -262,7 +262,7 @@ class Importer
         //get first instance
         foreach ($property as $property) { break; }
 
-        $entityClass = "Heartsentwined\\Vcard\Entity\\$entityName";
+        $entityClass = 'Heartsentwined\Vcard\Entity\\'.$entityName;
         $entity = new $entityClass;
         $this->getEm()->persist($entity);
         $entity

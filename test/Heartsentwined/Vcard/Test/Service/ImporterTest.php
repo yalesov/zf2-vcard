@@ -212,7 +212,10 @@ STR
 
         $orgs = $this->importer->importMultiple(
             $card->ORG, 'Heartsentwined\Vcard\Entity\Org');
+        $this->em->flush();
         $this->assertCount(2, $orgs);
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Org')->findAll());
 
         $foo = $orgs[0];
         $bar = $orgs[1];
@@ -236,6 +239,11 @@ STR
 
         $foo = $this->importer->importSingle(
             $card->ORG, 'Heartsentwined\Vcard\Entity\Org');
+        $this->em->flush();
+        $this->assertInstanceOf('Heartsentwined\Vcard\Entity\Org', $foo);
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Org')->findAll());
+
         $this->assertSame('foo', $foo->getValue());
     }
 }

@@ -305,7 +305,7 @@ class Importer
      *
      * @return self
      */
-    public function importFn()
+    public function importFormattedName()
     {
         // not yet implemented
     }
@@ -315,7 +315,7 @@ class Importer
      *
      * @return self
      */
-    public function importN()
+    public function importName()
     {
         // not yet implemented
     }
@@ -345,7 +345,7 @@ class Importer
      *
      * @return self
      */
-    public function importBday()
+    public function importBirthday()
     {
         // not yet implemented
     }
@@ -375,7 +375,7 @@ class Importer
      *
      * @return self
      */
-    public function importAdr()
+    public function importAddress()
     {
         // not yet implemented
     }
@@ -385,7 +385,7 @@ class Importer
      *
      * @return self
      */
-    public function importTel()
+    public function importPhone()
     {
         // not yet implemented
     }
@@ -405,7 +405,7 @@ class Importer
      *
      * @return self
      */
-    public function importImpp()
+    public function importX-AIM ()
     {
         // not yet implemented
     }
@@ -415,7 +415,7 @@ class Importer
      *
      * @return self
      */
-    public function importLang()
+    public function importLanguage()
     {
         // not yet implemented
     }
@@ -425,7 +425,7 @@ class Importer
      *
      * @return self
      */
-    public function importTz()
+    public function importTimezone()
     {
         // not yet implemented
     }
@@ -495,7 +495,7 @@ class Importer
      *
      * @return self
      */
-    public function importRelated()
+    public function importRelation()
     {
         // not yet implemented
     }
@@ -505,7 +505,7 @@ class Importer
      *
      * @return self
      */
-    public function importCategories()
+    public function importTag()
     {
         // not yet implemented
     }
@@ -555,7 +555,7 @@ class Importer
      *
      * @return self
      */
-    public function importKey()
+    public function importPublicKey()
     {
         // not yet implemented
     }
@@ -565,7 +565,7 @@ class Importer
      *
      * @return self
      */
-    public function importFburl()
+    public function importFreebusy()
     {
         // not yet implemented
     }
@@ -575,7 +575,7 @@ class Importer
      *
      * @return self
      */
-    public function importCaladruri()
+    public function importCalendar()
     {
         // not yet implemented
     }
@@ -585,7 +585,7 @@ class Importer
      *
      * @return self
      */
-    public function importCaluri()
+    public function importCalendarRequest()
     {
         // not yet implemented
     }

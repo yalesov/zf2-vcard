@@ -164,15 +164,14 @@ class Importer
             'TZ'        => 'Timezone',
         );
 
-        static $em;
         static $typeRepo;
         static $typeMap = array();
         static $valueTypeRepo;
         static $valueTypeMap = array();
 
-        if (empty($em)) {
-            $em = $this->getEm();
-        }
+        // cannot use static, otherwise persist() won't work
+        $em = $this->getEm();
+
         if (empty($typeRepo) || empty($valueTypeRepo)) {
             $typeRepo =
                 $em->getRepository('Heartsentwined\Vcard\Entity\Type');

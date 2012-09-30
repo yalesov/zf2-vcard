@@ -48,7 +48,7 @@ STR
             'Sabre\VObject\Node',
             $this->importer->parseSource(<<<STR
 BEGIN:VCARD
-VERSION:4.0
+FOO:bar
 END:VCARD
 STR
             ));
@@ -75,7 +75,6 @@ STR
 
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
-VERSION:4.0
 ALL;ALTID=altid;GEO=geo;LABEL=label;LANGUAGE=language;MEDIATYPE=mediatype;
  PREF=pref;SORT-AS=sort-as;TZ=tz:foo
 ALLEMPTY;ALTID=;GEO=;LABEL=;LANGUAGE=;MEDIATYPE=;

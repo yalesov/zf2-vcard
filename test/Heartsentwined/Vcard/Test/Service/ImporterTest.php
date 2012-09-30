@@ -246,4 +246,27 @@ STR
 
         $this->assertSame('foo', $foo->getValue());
     }
+
+    public function testImportSource()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+SOURCE:foo
+SOURCE:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addSource'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addSource');
+
+        $this->importer->importSource();
+    }
 }

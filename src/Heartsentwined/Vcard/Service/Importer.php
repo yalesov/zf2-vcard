@@ -270,4 +270,23 @@ class Importer
 
         return $entity;
     }
+
+    /**
+     * SOURCE - Source
+     *
+     * @return self
+     */
+    public function importSource()
+    {
+        $vcard = $this->getVcard();
+        if (($sourceSrc = $this->getCard()->SOURCE) && count($sourceSrc)) {
+            foreach ($this->importMultiple(
+                $sourceSrc, 'Heartsentwined\Vcard\Entity\Source')
+            as $source) {
+                $vcard->addSource($source);
+            }
+        }
+
+        return $this;
+    }
 }

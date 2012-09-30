@@ -289,4 +289,304 @@ class Importer
 
         return $this;
     }
+
+    /**
+     * KIND - Kind
+     *
+     * @return self
+     */
+    public function importKind()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * FN - FormattedName
+     *
+     * @return self
+     */
+    public function importFn()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * N - Name
+     *
+     * @return self
+     */
+    public function importN()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * NICKNAME - Nickname
+     *
+     * @return self
+     */
+    public function importNickname()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * PHOTO - Photo
+     *
+     * @return self
+     */
+    public function importPhoto()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * BDAY - Birthday
+     *
+     * @return self
+     */
+    public function importBday()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * ANNIVERSARY - Anniversary
+     *
+     * @return self
+     */
+    public function importAnniversary()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * GENDER - Gender
+     *
+     * @return self
+     */
+    public function importGender()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * ADR - Address
+     *
+     * @return self
+     */
+    public function importAdr()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * TEL - Phone
+     *
+     * @return self
+     */
+    public function importTel()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * EMAIL - Email
+     *
+     * @return self
+     */
+    public function importEmail()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * IMPP / X-AIM / X-SKYPE / etc - Im
+     *
+     * @return self
+     */
+    public function importImpp()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * LANG - Language
+     *
+     * @return self
+     */
+    public function importLang()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * TZ - Timezone
+     *
+     * @return self
+     */
+    public function importTz()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * GEO - Geo
+     *
+     * @return self
+     */
+    public function importGeo()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * TITLE - Title
+     *
+     * @return self
+     */
+    public function importTitle()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * ROLE - Role
+     *
+     * @return self
+     */
+    public function importRole()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * LOGO - Logo
+     *
+     * @return self
+     */
+    public function importLogo()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * ORG - Org
+     *
+     * @return self
+     */
+    public function importOrg()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * MEMBER - Member
+     *
+     * @return self
+     */
+    public function importMember()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * RELATED - Relation
+     *
+     * @return self
+     */
+    public function importRelated()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * CATEGORIES - Tag
+     *
+     * @return self
+     */
+    public function importCategories()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * NOTE - Note
+     *
+     * @return self
+     */
+    public function importNote()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * SOUND - Sound
+     *
+     * @return self
+     */
+    public function importSound()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * UID - Uid
+     *
+     * @return self
+     */
+    public function importUid()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * URL - Url
+     *
+     * @return self
+     */
+    public function importUrl()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * KEY - PublicKey
+     *
+     * @return self
+     */
+    public function importKey()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * FBURL - Freebusy
+     *
+     * @return self
+     */
+    public function importFburl()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * CALURI - Calendar
+     *
+     * @return self
+     */
+    public function importCaladruri()
+    {
+        // not yet implemented
+    }
+
+    /**
+     * CALADRURI - CalendarRequest
+     *
+     * @return self
+     */
+    public function importCaluri()
+    {
+        // not yet implemented
+    }
 }

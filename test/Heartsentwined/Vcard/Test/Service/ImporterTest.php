@@ -54,6 +54,9 @@ STR
             ));
     }
 
+    /**
+     * @depends testParseSource
+     */
     public function testImportParam()
     {
         $oldValue = new Entity\ParamValueType;
@@ -87,7 +90,7 @@ END:VCARD
 STR
         );
 
-        $param = $this->importer->paramSource($card->ALL);
+        $param = $this->importer->importParam($card->ALL);
         $this->assertSame('altid', $param->getAltId());
         $this->assertSame('geo', $param->getGeo());
         $this->assertSame('label', $param->getLabel());
@@ -99,7 +102,7 @@ STR
         $this->assertEmpty($param->getValueType());
         $this->assertCount(0, $param->getTypes());
 
-        $param = $this->importer->paramSource($card->ALLEMPTY);
+        $param = $this->importer->importParam($card->ALLEMPTY);
         $this->assertSame('', $param->getAltId());
         $this->assertSame('', $param->getGeo());
         $this->assertSame('', $param->getLabel());
@@ -111,7 +114,7 @@ STR
         $this->assertEmpty($param->getValueType());
         $this->assertCount(0, $param->getTypes());
 
-        $param = $this->importer->paramSource($card->{'VALUE-OLD'});
+        $param = $this->importer->importParam($card->{'VALUE-OLD'});
         $this->assertSame('', $param->getAltId());
         $this->assertSame('', $param->getGeo());
         $this->assertSame('', $param->getLabel());
@@ -123,7 +126,7 @@ STR
         $this->assertSame($oldValue, $param->getValueType());
         $this->assertCount(0, $param->getTypes());
 
-        $param = $this->importer->paramSource($card->{'VALUE-NEW'});
+        $param = $this->importer->importParam($card->{'VALUE-NEW'});
         $this->assertSame('', $param->getAltId());
         $this->assertSame('', $param->getGeo());
         $this->assertSame('', $param->getLabel());
@@ -137,7 +140,7 @@ STR
         $this->assertSame('new-value', $newValue->getValue());
         $this->assertCount(0, $param->getTypes());
 
-        $param = $this->importer->paramSource($card->{'VALUE-EMPTY'});
+        $param = $this->importer->importParam($card->{'VALUE-EMPTY'});
         $this->assertSame('', $param->getAltId());
         $this->assertSame('', $param->getGeo());
         $this->assertSame('', $param->getLabel());
@@ -149,7 +152,7 @@ STR
         $this->assertEmpty($param->getValueType());
         $this->assertCount(0, $param->getTypes());
 
-        $param = $this->importer->paramSource($card->{'TYPE-COMMA'});
+        $param = $this->importer->importParam($card->{'TYPE-COMMA'});
         $this->assertSame('', $param->getAltId());
         $this->assertSame('', $param->getGeo());
         $this->assertSame('', $param->getLabel());
@@ -167,7 +170,7 @@ STR
         }
         $this->assertSame(array($work, $home), $actual);
 
-        $param = $this->importer->paramSource($card->{'TYPE-NEW'});
+        $param = $this->importer->importParam($card->{'TYPE-NEW'});
         $this->assertSame('', $param->getAltId());
         $this->assertSame('', $param->getGeo());
         $this->assertSame('', $param->getLabel());
@@ -182,7 +185,7 @@ STR
         $newType = $types[0];
         $this->assertSame('new-type', $newType->getValue());
 
-        $param = $this->importer->paramSource($card->{'TYPE-EMPTY'});
+        $param = $this->importer->importParam($card->{'TYPE-EMPTY'});
         $this->assertSame('', $param->getAltId());
         $this->assertSame('', $param->getGeo());
         $this->assertSame('', $param->getLabel());

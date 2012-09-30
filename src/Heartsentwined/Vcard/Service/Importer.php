@@ -232,7 +232,7 @@ class Importer
      *  for Heartsentwined\Vcard\Entity\Foo, pass in 'foo'
      * @return Entity\*[]
      */
-    public function importMultipleInstances(Property $property, $entityName)
+    public function importMultiple(Property $property, $entityName)
     {
         $em = $this->getEm();
         $entities = array();
@@ -257,7 +257,7 @@ class Importer
      *  for Heartsentwined\Vcard\Entity\Foo, pass in 'foo'
      * @return Entity\*
      */
-    public function importSingleInstance(Property $property, $entityName)
+    public function importSingle(Property $property, $entityName)
     {
         //get first instance
         foreach ($property as $property) { break; }

@@ -200,7 +200,7 @@ STR
     /**
      * @depends testParseSource
      */
-    public function testImportMultipleInstances()
+    public function testImportMultiple()
     {
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
@@ -210,7 +210,7 @@ END:VCARD
 STR
         );
 
-        $orgs = $this->importer->importMultipleInstances($card->ORG, 'Org');
+        $orgs = $this->importer->importMultiple($card->ORG, 'Org');
         $this->assertCount(2, $orgs);
 
         $foo = $orgs[0];
@@ -223,7 +223,7 @@ STR
     /**
      * @depends testParseSource
      */
-    public function testImportSingleInstance()
+    public function testImportSingle()
     {
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
@@ -233,7 +233,7 @@ END:VCARD
 STR
         );
 
-        $foo = $this->importer->importSingleInstance($card->ORG, 'Org');
+        $foo = $this->importer->importSingle($card->ORG, 'Org');
         $this->assertSame('foo', $foo->getValue());
     }
 }

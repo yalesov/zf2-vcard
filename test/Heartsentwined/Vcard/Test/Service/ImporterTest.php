@@ -279,7 +279,77 @@ STR
      */
     public function testImportKind()
     {
-        $this->fail('not yet implemented');
+        $default = Repository\KindValue::DEF;
+        $defaultValue = new Entity\KindValue;
+        $this->em->persist($defaultValue);
+        $defaultValue->setValue($default);
+        $this->em->flush();
+
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+KIND:$default
+END:VCARD
+STR
+        );
+
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importKind();
+        $this->em->flush();
+        $kind = $vcard->getKind();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Kind', $kind);
+        $this->assertSame($defaultValue, $kind->getValue());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\KindValue')
+            ->findAll());
+
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+KIND:
+END:VCARD
+STR
+        );
+
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importKind();
+        $this->em->flush();
+        $kind = $vcard->getKind();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Kind', $kind);
+        $this->assertSame($defaultValue, $kind->getValue());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\KindValue')
+            ->findAll());
+
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+KIND:foo
+END:VCARD
+STR
+        );
+
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importKind();
+        $this->em->flush();
+        $kind = $vcard->getKind();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Kind', $kind);
+        $kindValue = $kind->getValue();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\KindValue', $kindValue);
+        $this->assertSame('foo', $kindValue->getValue());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\KindValue')
+            ->findAll());
     }
 
     /**

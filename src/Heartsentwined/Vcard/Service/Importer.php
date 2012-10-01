@@ -299,7 +299,26 @@ class Importer
      */
     public function importKind()
     {
-        // not yet implemented
+        $em = $this->getEm();
+        $card = $this->getCard();
+
+        $kindValueSrc = (string) $card->KIND
+            ? (string) $card->KIND : Repository\KindValue::DEF;
+        if (!$kindValue = $em
+            ->getRepository('Heartsentwined\Vcard\Entity\KindValue')
+            ->findOneBy(array('value' => $kindValueSrc))) {
+            $kindValue = new Entity\KindValue;
+            $em->persist($kindValue);
+            $kindValue->setValue($kindValueSrc);
+        }
+        $kind = new Entity\Kind;
+        $em->persist($kind);
+        $kind
+            ->setValue($kindValue)
+            ->setParam($this->importParam($card->KIND));
+        $this->getVcard()->setKind($kind);
+
+        return $this;
     }
 
     /**

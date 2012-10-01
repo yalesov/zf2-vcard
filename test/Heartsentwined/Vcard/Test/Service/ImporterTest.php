@@ -2,6 +2,7 @@
 namespace Heartsentwined\Vcard\Test\Service;
 
 use Heartsentwined\Vcard\Entity;
+use Heartsentwined\Vcard\Repository;
 use Heartsentwined\Vcard\Service\Importer;
 use Heartsentwined\Phpunit\Testcase\Doctrine as DoctrineTestcase;
 

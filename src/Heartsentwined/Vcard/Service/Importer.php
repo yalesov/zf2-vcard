@@ -5,6 +5,7 @@ use Doctrine\ORM\EntityManager;
 use Heartsentwined\ArgValidator\ArgValidator;
 use Heartsentwined\Utf8\Utf8;
 use Heartsentwined\Vcard\Entity;
+use Heartsentwined\Vcard\Repository;
 use Sabre\VObject\Node;
 use Sabre\VObject\ParseException;
 use Sabre\VObject\Property;

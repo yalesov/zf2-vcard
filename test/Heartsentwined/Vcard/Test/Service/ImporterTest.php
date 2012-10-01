@@ -704,7 +704,25 @@ STR
      */
     public function testImportUid()
     {
-        $this->fail('not yet implemented');
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+UID:foo
+UID:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('setUid'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->once())
+            ->method('setUid');
+
+        $this->importer->importUid();
     }
 
     /**

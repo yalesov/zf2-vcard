@@ -668,7 +668,13 @@ class Importer
      */
     public function importUid()
     {
-        // not yet implemented
+        if (($uidSrc = $this->getCard()->UID)
+            && count($uidSrc)) {
+            $this->getVcard()->setUid($this->importSingle($uidSrc,
+                'Heartsentwined\Vcard\Entity\Uid'));
+        }
+
+        return $this;
     }
 
     /**

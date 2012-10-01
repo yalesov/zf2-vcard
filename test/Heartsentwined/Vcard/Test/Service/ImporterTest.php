@@ -247,6 +247,9 @@ STR
         $this->assertSame('foo', $foo->getValue());
     }
 
+    /**
+     * @depends testParseSource
+     */
     public function testImportSource()
     {
         $card = $this->importer->parseSource(<<<STR

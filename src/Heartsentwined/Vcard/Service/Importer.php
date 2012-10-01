@@ -408,7 +408,48 @@ class Importer
      */
     public function importGender()
     {
-        // not yet implemented
+        $em = $this->getEm();
+        $card = $this->getCard();
+        $genderValueRepo =
+            $em->getRepository('Heartsentwined\Vcard\Entity\GenderValue');
+
+        $genderProperty = $card->GENDER;
+        $genderValueSrc = (string) $card->GENDER;
+        if ($genderValueSrc === '') {
+            $genderProperty = $card->{'X-GENDER'};
+            switch (strtolower($card->{'X-GENDER'})) { // non-standard form
+                case 'male':
+                case 'm':
+                    $genderValueSrc = Repository\GenderValue::M;
+                    break;
+                case 'female':
+                case 'f':
+                    $genderValueSrc = Repository\GenderValue::F;
+                    break;
+            }
+        }
+        if ($genderValueSrc) {
+            if (!strpos($genderValueSrc, ';')) {
+                $genderValueSrc .= ';';
+            }
+            list($value, $comment) = explode(';', $genderValueSrc);
+            $refl = new \ReflectionClass($genderValueRepo);
+            if (!in_array($value, $refl->getConstants())) {
+                $value = '';
+            }
+            $gender = new Entity\Gender;
+            $em->persist($gender);
+            $gender
+                ->setComment($comment)
+                ->setParam($this->importParam($genderProperty));
+            if ($genderValue = $genderValueRepo
+                ->findOneBy(array('value' => $value))) {
+                $gender->setValue($genderValue);
+            }
+            $this->getVcard()->setGender($gender);
+        }
+
+        return $this;
     }
 
     /**

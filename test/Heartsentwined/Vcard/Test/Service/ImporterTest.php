@@ -441,7 +441,218 @@ STR
      */
     public function testImportGender()
     {
-        $this->fail('not yet implemented');
+        $male = new Entity\GenderValue;
+        $this->em->persist($male);
+        $male->setValue('M');
+        $this->em->flush();
+
+        // standard gender
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+GENDER:M
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $gender = $vcard->getGender();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Gender', $gender);
+        $this->assertSame($male, $gender->getValue());
+        $this->assertEmpty($gender->getComment());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // gender with comment
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+GENDER:M;comment
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $gender = $vcard->getGender();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Gender', $gender);
+        $this->assertSame($male, $gender->getValue());
+        $this->assertSame('comment', $gender->getComment());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // only comment
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+GENDER:;comment
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $gender = $vcard->getGender();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Gender', $gender);
+        $this->assertEmpty($gender->getValue());
+        $this->assertSame('comment', $gender->getComment());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // no gender
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $this->assertEmpty($vcard->getGender());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // undefined gender
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+GENDER:Z
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $gender = $vcard->getGender();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Gender', $gender);
+        $this->assertEmpty($gender->getValue());
+        $this->assertEmpty($gender->getComment());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // undefined gender with comment
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+GENDER:Z;comment
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $gender = $vcard->getGender();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Gender', $gender);
+        $this->assertEmpty($gender->getValue());
+        $this->assertSame('comment', $gender->getComment());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // standard x-gender
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+X-GENDER:Male
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $gender = $vcard->getGender();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Gender', $gender);
+        $this->assertSame($male, $gender->getValue());
+        $this->assertEmpty($gender->getComment());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // standard x-gender: lowercase; short-form
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+X-GENDER:m
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $gender = $vcard->getGender();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Gender', $gender);
+        $this->assertSame($male, $gender->getValue());
+        $this->assertEmpty($gender->getComment());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // undefined x-gender
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+X-GENDER:Z
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $this->assertEmpty($vcard->getGender());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
+
+        // empty x-gender
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+X-GENDER:
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importGender();
+        $this->em->flush();
+        $this->assertEmpty($vcard->getGender());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GenderValue')
+            ->findAll());
     }
 
     /**

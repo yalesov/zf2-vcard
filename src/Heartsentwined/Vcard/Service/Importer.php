@@ -308,7 +308,17 @@ class Importer
      */
     public function importFormattedName()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($formattedNameSrc = $this->getCard()->FN)
+            && count($formattedNameSrc)) {
+            foreach ($this->importMultiple($formattedNameSrc,
+                'Heartsentwined\Vcard\Entity\FormattedName')
+            as $formattedName) {
+                $vcard->addFormattedName($formattedName);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -338,7 +348,17 @@ class Importer
      */
     public function importPhoto()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($photoSrc = $this->getCard()->PHOTO)
+            && count($photoSrc)) {
+            foreach ($this->importMultiple($photoSrc,
+                'Heartsentwined\Vcard\Entity\Photo')
+            as $photo) {
+                $vcard->addPhoto($photo);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -398,7 +418,17 @@ class Importer
      */
     public function importEmail()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($emailSrc = $this->getCard()->EMAIL)
+            && count($emailSrc)) {
+            foreach ($this->importMultiple($emailSrc,
+                'Heartsentwined\Vcard\Entity\Email')
+            as $email) {
+                $vcard->addEmail($email);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -418,7 +448,17 @@ class Importer
      */
     public function importLanguage()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($languageSrc = $this->getCard()->LANG)
+            && count($languageSrc)) {
+            foreach ($this->importMultiple($languageSrc,
+                'Heartsentwined\Vcard\Entity\Language')
+            as $language) {
+                $vcard->addLanguage($language);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -428,7 +468,17 @@ class Importer
      */
     public function importTimezone()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($timezoneSrc = $this->getCard()->TZ)
+            && count($timezoneSrc)) {
+            foreach ($this->importMultiple($timezoneSrc,
+                'Heartsentwined\Vcard\Entity\Timezone')
+            as $timezone) {
+                $vcard->addTimezone($timezone);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -438,7 +488,17 @@ class Importer
      */
     public function importGeo()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($geoSrc = $this->getCard()->GEO)
+            && count($geoSrc)) {
+            foreach ($this->importMultiple($geoSrc,
+                'Heartsentwined\Vcard\Entity\Geo')
+            as $geo) {
+                $vcard->addGeo($geo);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -448,7 +508,17 @@ class Importer
      */
     public function importTitle()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($titleSrc = $this->getCard()->TITLE)
+            && count($titleSrc)) {
+            foreach ($this->importMultiple($titleSrc,
+                'Heartsentwined\Vcard\Entity\Title')
+            as $title) {
+                $vcard->addTitle($title);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -458,7 +528,17 @@ class Importer
      */
     public function importRole()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($roleSrc = $this->getCard()->ROLE)
+            && count($roleSrc)) {
+            foreach ($this->importMultiple($roleSrc,
+                'Heartsentwined\Vcard\Entity\Role')
+            as $role) {
+                $vcard->addRole($role);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -468,7 +548,17 @@ class Importer
      */
     public function importLogo()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($logoSrc = $this->getCard()->LOGO)
+            && count($logoSrc)) {
+            foreach ($this->importMultiple($logoSrc,
+                'Heartsentwined\Vcard\Entity\Logo')
+            as $logo) {
+                $vcard->addLogo($logo);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -478,7 +568,17 @@ class Importer
      */
     public function importOrg()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($orgSrc = $this->getCard()->ORG)
+            && count($orgSrc)) {
+            foreach ($this->importMultiple($orgSrc,
+                'Heartsentwined\Vcard\Entity\Org')
+            as $org) {
+                $vcard->addOrg($org);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -488,7 +588,17 @@ class Importer
      */
     public function importMember()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($memberSrc = $this->getCard()->MEMBER)
+            && count($memberSrc)) {
+            foreach ($this->importMultiple($memberSrc,
+                'Heartsentwined\Vcard\Entity\Member')
+            as $member) {
+                $vcard->addMember($member);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -518,7 +628,17 @@ class Importer
      */
     public function importNote()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($noteSrc = $this->getCard()->NOTE)
+            && count($noteSrc)) {
+            foreach ($this->importMultiple($noteSrc,
+                'Heartsentwined\Vcard\Entity\Note')
+            as $note) {
+                $vcard->addNote($note);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -528,7 +648,17 @@ class Importer
      */
     public function importSound()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($soundSrc = $this->getCard()->SOUND)
+            && count($soundSrc)) {
+            foreach ($this->importMultiple($soundSrc,
+                'Heartsentwined\Vcard\Entity\Sound')
+            as $sound) {
+                $vcard->addSound($sound);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -548,7 +678,17 @@ class Importer
      */
     public function importUrl()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($urlSrc = $this->getCard()->URL)
+            && count($urlSrc)) {
+            foreach ($this->importMultiple($urlSrc,
+                'Heartsentwined\Vcard\Entity\Url')
+            as $url) {
+                $vcard->addUrl($url);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -558,7 +698,17 @@ class Importer
      */
     public function importPublicKey()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($publicKeySrc = $this->getCard()->KEY)
+            && count($publicKeySrc)) {
+            foreach ($this->importMultiple($publicKeySrc,
+                'Heartsentwined\Vcard\Entity\PublicKey')
+            as $publicKey) {
+                $vcard->addPublicKey($publicKey);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -568,7 +718,17 @@ class Importer
      */
     public function importFreebusy()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($freebusySrc = $this->getCard()->FBURL)
+            && count($freebusySrc)) {
+            foreach ($this->importMultiple($freebusySrc,
+                'Heartsentwined\Vcard\Entity\Freebusy')
+            as $freebusy) {
+                $vcard->addFreebusy($freebusy);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -578,7 +738,17 @@ class Importer
      */
     public function importCalendar()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($calendarSrc = $this->getCard()->CALURI)
+            && count($calendarSrc)) {
+            foreach ($this->importMultiple($calendarSrc,
+                'Heartsentwined\Vcard\Entity\Calendar')
+            as $calendar) {
+                $vcard->addCalendar($calendar);
+            }
+        }
+
+        return $this;
     }
 
     /**
@@ -588,6 +758,16 @@ class Importer
      */
     public function importCalendarRequest()
     {
-        // not yet implemented
+        $vcard = $this->getVcard();
+        if (($calendarRequestSrc = $this->getCard()->CALADRURI)
+            && count($calendarRequestSrc)) {
+            foreach ($this->importMultiple($calendarRequestSrc,
+                'Heartsentwined\Vcard\Entity\CalendarRequest')
+            as $calendarRequest) {
+                $vcard->addCalendarRequest($calendarRequest);
+            }
+        }
+
+        return $this;
     }
 }

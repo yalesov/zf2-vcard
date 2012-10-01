@@ -272,4 +272,568 @@ STR
 
         $this->importer->importSource();
     }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportKind()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportFormattedName()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FN:foo
+FN:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addFormattedName'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addFormattedName');
+
+        $this->importer->importFormattedName();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportName()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportNickname()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportPhoto()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+PHOTO:foo
+PHOTO:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addPhoto'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addPhoto');
+
+        $this->importer->importPhoto();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportBirthday()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportAnniversary()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportGender()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportAddress()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportPhone()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportEmail()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+EMAIL:foo
+EMAIL:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addEmail'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addEmail');
+
+        $this->importer->importEmail();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportIm()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportLanguage()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+LANG:foo
+LANG:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addLanguage'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addLanguage');
+
+        $this->importer->importLanguage();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportTimezone()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+TZ:foo
+TZ:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addTimezone'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addTimezone');
+
+        $this->importer->importTimezone();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportGeo()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+GEO:foo
+GEO:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addGeo'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addGeo');
+
+        $this->importer->importGeo();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportTitle()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+TITLE:foo
+TITLE:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addTitle'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addTitle');
+
+        $this->importer->importTitle();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportRole()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ROLE:foo
+ROLE:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addRole'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addRole');
+
+        $this->importer->importRole();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportLogo()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+LOGO:foo
+LOGO:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addLogo'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addLogo');
+
+        $this->importer->importLogo();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportOrg()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ORG:foo
+ORG:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addOrg'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addOrg');
+
+        $this->importer->importOrg();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportMember()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+MEMBER:foo
+MEMBER:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addMember'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addMember');
+
+        $this->importer->importMember();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportRelation()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportTag()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportNote()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+NOTE:foo
+NOTE:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addNote'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addNote');
+
+        $this->importer->importNote();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportSound()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+SOUND:foo
+SOUND:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addSound'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addSound');
+
+        $this->importer->importSound();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportUid()
+    {
+        $this->fail('not yet implemented');
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportUrl()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+URL:foo
+URL:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addUrl'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addUrl');
+
+        $this->importer->importUrl();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportPublicKey()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+KEY:foo
+KEY:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addPublicKey'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addPublicKey');
+
+        $this->importer->importPublicKey();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportFreebusy()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FBURL:foo
+FBURL:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addFreebusy'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addFreebusy');
+
+        $this->importer->importFreebusy();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportCalendar()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+CALURI:foo
+CALURI:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addCalendar'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addCalendar');
+
+        $this->importer->importCalendar();
+    }
+
+    /**
+     * @depends testParseSource
+     */
+    public function testImportCalendarRequest()
+    {
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+CALADRURI:foo
+CALADRURI:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addCalendarRequest'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addCalendarRequest');
+
+        $this->importer->importCalendarRequest();
+    }
 }

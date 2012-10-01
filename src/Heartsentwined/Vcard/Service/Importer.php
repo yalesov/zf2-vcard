@@ -279,9 +279,10 @@ class Importer
     public function importSource()
     {
         $vcard = $this->getVcard();
-        if (($sourceSrc = $this->getCard()->SOURCE) && count($sourceSrc)) {
-            foreach ($this->importMultiple(
-                $sourceSrc, 'Heartsentwined\Vcard\Entity\Source')
+        if (($sourceSrc = $this->getCard()->SOURCE)
+            && count($sourceSrc)) {
+            foreach ($this->importMultiple($sourceSrc,
+                'Heartsentwined\Vcard\Entity\Source')
             as $source) {
                 $vcard->addSource($source);
             }

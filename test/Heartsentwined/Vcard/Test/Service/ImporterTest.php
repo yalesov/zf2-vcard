@@ -1319,7 +1319,128 @@ STR
      */
     public function testImportAddress()
     {
-        $this->fail('not yet implemented');
+        // standard entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ADR:pobox;ext;street;locality;region;postalcode;country
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importAddress();
+        $this->em->flush();
+        $addresses = $vcard->getAddresses();
+        $this->assertCount(1, $addresses);
+        foreach ($addresses as $address) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Address', $address);
+            $this->assertSame("pobox\next\nstreet", $address->getStreet());
+            $this->assertSame('locality', $address->getLocality());
+            $this->assertSame('region', $address->getRegion());
+            $this->assertSame('postalcode', $address->getPostalCode());
+            $this->assertSame('country', $address->getCountry());
+        }
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Address')
+            ->findAll());
+
+        // empty entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ADR:
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importAddress();
+        $this->em->flush();
+        $addresses = $vcard->getAddresses();
+        $this->assertCount(0, $addresses);
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Address')
+            ->findAll());
+
+        // no entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importAddress();
+        $this->em->flush();
+        $addresses = $vcard->getAddresses();
+        $this->assertCount(0, $addresses);
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Address')
+            ->findAll());
+
+        // multiple entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ADR:pobox;ext;street;locality;region;postalcode;country
+ADR:pobox;ext;street;locality;region;postalcode;country
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importAddress();
+        $this->em->flush();
+        $addresses = $vcard->getAddresses();
+        $this->assertCount(2, $addresses);
+        foreach ($addresses as $address) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Address', $address);
+            $this->assertSame("pobox\next\nstreet", $address->getStreet());
+            $this->assertSame('locality', $address->getLocality());
+            $this->assertSame('region', $address->getRegion());
+            $this->assertSame('postalcode', $address->getPostalCode());
+            $this->assertSame('country', $address->getCountry());
+        }
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Address')
+            ->findAll());
+
+        // \n's
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ADR:p\\nobox;e\\nxt;s\\ntreet;l\\nocality;r\\negion;p\\nostalcode;c\\nountry
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importAddress();
+        $this->em->flush();
+        $addresses = $vcard->getAddresses();
+        $this->assertCount(1, $addresses);
+        foreach ($addresses as $address) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Address', $address);
+            $this->assertSame("p\nobox\ne\nxt\ns\ntreet", $address->getStreet());
+            $this->assertSame("l\nocality", $address->getLocality());
+            $this->assertSame("r\negion", $address->getRegion());
+            $this->assertSame("p\nostalcode", $address->getPostalCode());
+            $this->assertSame("c\nountry", $address->getCountry());
+        }
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Address')
+            ->findAll());
     }
 
     /**

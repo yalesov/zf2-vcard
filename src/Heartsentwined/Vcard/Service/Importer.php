@@ -524,7 +524,40 @@ class Importer
      */
     public function importAddress()
     {
-        // not yet implemented
+        $card = $this->getCard();
+        if ((string) $card->ADR === '') return $this;
+
+        $em = $this->getEm();
+        $vcard = $this->getVcard();
+
+        foreach ($card->ADR as $addressSrc) {
+            $address = new Entity\Address;
+            $em->persist($address);
+            $vcard->addAddress($address);
+            $address->setParam($this->importParam($addressSrc));
+
+            // replace literal \n's in source string with new line
+            $addressSrc = strtr($addressSrc, array('\n' => "\n"));
+            list($poBox, $ext, $street, $locality, $region,
+                $postalCode, $country) = explode(';', $addressSrc);
+
+            $streetParts = array($poBox, $ext, $street);
+            foreach ($streetParts as $key => $streetPart) {
+                if (empty($streetPart)) {
+                    unset($streetParts[$key]);
+                }
+            }
+            $assembledStreet = implode("\n", $streetParts);
+
+            $address
+                ->setStreet($assembledStreet)
+                ->setLocality($locality)
+                ->setRegion($region)
+                ->setPostalCode($postalCode)
+                ->setCountry($country);
+        }
+
+        return $this;
     }
 
     /**

@@ -870,7 +870,146 @@ STR
      */
     public function testImportNickname()
     {
-        $this->fail('not yet implemented');
+        // standard entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+NICKNAME:foo
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importNickname();
+        $this->em->flush();
+        $nicknames = $vcard->getNicknames();
+        $this->assertCount(1, $nicknames);
+        foreach ($nicknames as $nickname) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Nickname', $nickname);
+            $values = $nickname->getValues();
+            $this->assertCount(1, $values);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\NicknameValue', $values[0]);
+            $this->assertSame('foo', $values[0]->getValue());
+        }
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Nickname')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\NicknameValue')
+            ->findAll());
+
+        // comma-separated values
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+NICKNAME:foo,bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importNickname();
+        $this->em->flush();
+        $nicknames = $vcard->getNicknames();
+        $this->assertCount(1, $nicknames);
+        foreach ($nicknames as $nickname) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Nickname', $nickname);
+            $values = $nickname->getValues();
+            $this->assertCount(2, $values);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\NicknameValue', $values[0]);
+            $this->assertSame('foo', $values[0]->getValue());
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\NicknameValue', $values[1]);
+            $this->assertSame('bar', $values[1]->getValue());
+        }
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Nickname')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\NicknameValue')
+            ->findAll());
+
+        // multiple entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+NICKNAME:foo
+NICKNAME:foo
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importNickname();
+        $this->em->flush();
+        $nicknames = $vcard->getNicknames();
+        $this->assertCount(2, $nicknames);
+        foreach ($nicknames as $nickname) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Nickname', $nickname);
+            $values = $nickname->getValues();
+            $this->assertCount(1, $values);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\NicknameValue', $values[0]);
+            $this->assertSame('foo', $values[0]->getValue());
+        }
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Nickname')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\NicknameValue')
+            ->findAll());
+
+        // empty entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+NICKNAME:
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importNickname();
+        $this->em->flush();
+        $nicknames = $vcard->getNicknames();
+        $this->assertCount(0, $nicknames);
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Nickname')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\NicknameValue')
+            ->findAll());
+
+        // no entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importNickname();
+        $this->em->flush();
+        $nicknames = $vcard->getNicknames();
+        $this->assertCount(0, $nicknames);
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Nickname')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\NicknameValue')
+            ->findAll());
     }
 
     /**

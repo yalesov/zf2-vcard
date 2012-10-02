@@ -399,7 +399,27 @@ class Importer
      */
     public function importNickname()
     {
-        // not yet implemented
+        $card = $this->getCard();
+        if ((string) $card->NICKNAME === '') return $this;
+
+        $em = $this->getEm();
+        $vcard = $this->getVcard();
+
+        foreach ($card->NICKNAME as $nicknameSrc) {
+            $nickname = new Entity\Nickname;
+            $em->persist($nickname);
+            $vcard->addNickname($nickname);
+            $nickname->setParam($this->importParam($nicknameSrc));
+
+            foreach (explode(',', $nicknameSrc) as $valueSrc) {
+                $nicknameValue = new Entity\NicknameValue;
+                $em->persist($nicknameValue);
+                $nickname->addValue($nicknameValue);
+                $nicknameValue->setValue($valueSrc);
+            }
+        }
+
+        return $this;
     }
 
     /**

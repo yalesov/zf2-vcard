@@ -808,7 +808,7 @@ class Importer
     public function importUid()
     {
         $card = $this->getCard();
-        if ($card->UID === '') return $this;
+        if ((string) $card->UID === '') return $this;
 
         $this->getVcard()->setUid($this->importSingle($card->UID,
             'Heartsentwined\Vcard\Entity\Uid'));

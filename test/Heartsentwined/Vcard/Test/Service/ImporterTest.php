@@ -383,7 +383,352 @@ STR
      */
     public function testImportName()
     {
-        $this->fail('not yet implemented');
+        // standard name
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+N:family;given;additional;prefix;suffix
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importName();
+        $this->em->flush();
+        $names = $vcard->getNames();
+        $this->assertCount(1, $names);
+        foreach ($names as $name) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Name', $name);
+            $familyNames = $name->getFamilyNames();
+            $this->assertCount(1, $familyNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\FamilyName', $familyNames[0]);
+            $this->assertSame('family', $familyNames[0]->getValue());
+
+            $givenNames = $name->getGivenNames();
+            $this->assertCount(1, $givenNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\GivenName', $givenNames[0]);
+            $this->assertSame('given', $givenNames[0]->getValue());
+
+            $additionalNames = $name->getAdditionalNames();
+            $this->assertCount(1, $additionalNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\AdditionalName',
+                $additionalNames[0]);
+            $this->assertSame('additional', $additionalNames[0]->getValue());
+
+            $prefixes = $name->getPrefixes();
+            $this->assertCount(1, $prefixes);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Prefix', $prefixes[0]);
+            $this->assertSame('prefix', $prefixes[0]->getValue());
+
+            $suffixes = $name->getSuffixes();
+            $this->assertCount(1, $suffixes);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Suffix', $suffixes[0]);
+            $this->assertSame('suffix', $suffixes[0]->getValue());
+        }
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GivenName')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\AdditionalName')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Prefix')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
+            ->findAll());
+
+        // empty components
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+N:;;;;
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importName();
+        $this->em->flush();
+        $names = $vcard->getNames();
+        $this->assertCount(1, $names);
+        foreach ($names as $name) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Name', $name);
+            $familyNames = $name->getFamilyNames();
+            $this->assertCount(0, $familyNames);
+
+            $givenNames = $name->getGivenNames();
+            $this->assertCount(0, $givenNames);
+
+            $additionalNames = $name->getAdditionalNames();
+            $this->assertCount(0, $additionalNames);
+
+            $prefixes = $name->getPrefixes();
+            $this->assertCount(0, $prefixes);
+
+            $suffixes = $name->getSuffixes();
+            $this->assertCount(0, $suffixes);
+        }
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GivenName')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\AdditionalName')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Prefix')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
+            ->findAll());
+
+        // multiple components
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+N:family1,family2;given1,given2;add1,add2;prefix1,prefix2;suffix1,suffix2
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importName();
+        $this->em->flush();
+        $names = $vcard->getNames();
+        $this->assertCount(1, $names);
+        foreach ($names as $name) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Name', $name);
+            $familyNames = $name->getFamilyNames();
+            $this->assertCount(2, $familyNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\FamilyName', $familyNames[0]);
+            $this->assertSame('family1', $familyNames[0]->getValue());
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\FamilyName', $familyNames[1]);
+            $this->assertSame('family2', $familyNames[1]->getValue());
+
+            $givenNames = $name->getGivenNames();
+            $this->assertCount(2, $givenNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\GivenName', $givenNames[0]);
+            $this->assertSame('given1', $givenNames[0]->getValue());
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\GivenName', $givenNames[1]);
+            $this->assertSame('given2', $givenNames[1]->getValue());
+
+            $additionalNames = $name->getAdditionalNames();
+            $this->assertCount(2, $additionalNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\AdditionalName',
+                $additionalNames[0]);
+            $this->assertSame('add1', $additionalNames[0]->getValue());
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\AdditionalName',
+                $additionalNames[1]);
+            $this->assertSame('add2', $additionalNames[1]->getValue());
+
+            $prefixes = $name->getPrefixes();
+            $this->assertCount(2, $prefixes);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Prefix', $prefixes[0]);
+            $this->assertSame('prefix1', $prefixes[0]->getValue());
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Prefix', $prefixes[1]);
+            $this->assertSame('prefix2', $prefixes[1]->getValue());
+
+            $suffixes = $name->getSuffixes();
+            $this->assertCount(2, $suffixes);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Suffix', $suffixes[0]);
+            $this->assertSame('suffix1', $suffixes[0]->getValue());
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Suffix', $suffixes[1]);
+            $this->assertSame('suffix2', $suffixes[1]->getValue());
+        }
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GivenName')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\AdditionalName')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Prefix')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
+            ->findAll());
+
+        // incomplete components
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+N:family;given
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importName();
+        $this->em->flush();
+        $names = $vcard->getNames();
+        $this->assertCount(1, $names);
+        foreach ($names as $name) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Name', $name);
+            $familyNames = $name->getFamilyNames();
+            $this->assertCount(1, $familyNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\FamilyName', $familyNames[0]);
+            $this->assertSame('family', $familyNames[0]->getValue());
+
+            $givenNames = $name->getGivenNames();
+            $this->assertCount(1, $givenNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\GivenName', $givenNames[0]);
+            $this->assertSame('given', $givenNames[0]->getValue());
+
+            $additionalNames = $name->getAdditionalNames();
+            $this->assertCount(0, $additionalNames);
+
+            $prefixes = $name->getPrefixes();
+            $this->assertCount(0, $prefixes);
+
+            $suffixes = $name->getSuffixes();
+            $this->assertCount(0, $suffixes);
+        }
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
+            ->findAll());
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GivenName')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\AdditionalName')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Prefix')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
+            ->findAll());
+
+        // multiple names
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+N:family;given;additional;prefix;suffix
+N:family;given;additional;prefix;suffix
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importName();
+        $this->em->flush();
+        $names = $vcard->getNames();
+        $this->assertCount(2, $names);
+        foreach ($names as $name) {
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Name', $name);
+            $familyNames = $name->getFamilyNames();
+            $this->assertCount(1, $familyNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\FamilyName', $familyNames[0]);
+            $this->assertSame('family', $familyNames[0]->getValue());
+
+            $givenNames = $name->getGivenNames();
+            $this->assertCount(1, $givenNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\GivenName', $givenNames[0]);
+            $this->assertSame('given', $givenNames[0]->getValue());
+
+            $additionalNames = $name->getAdditionalNames();
+            $this->assertCount(1, $additionalNames);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\AdditionalName',
+                $additionalNames[0]);
+            $this->assertSame('additional', $additionalNames[0]->getValue());
+
+            $prefixes = $name->getPrefixes();
+            $this->assertCount(1, $prefixes);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Prefix', $prefixes[0]);
+            $this->assertSame('prefix', $prefixes[0]->getValue());
+
+            $suffixes = $name->getSuffixes();
+            $this->assertCount(1, $suffixes);
+            $this->assertInstanceOf(
+                'Heartsentwined\Vcard\Entity\Suffix', $suffixes[0]);
+            $this->assertSame('suffix', $suffixes[0]->getValue());
+        }
+        $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
+            ->findAll());
+        $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GivenName')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\AdditionalName')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Prefix')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
+            ->findAll());
+
+        // no name
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importName();
+        $this->em->flush();
+        $names = $vcard->getNames();
+        $this->assertCount(0, $names);
+        $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
+            ->findAll());
+        $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\GivenName')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\AdditionalName')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Prefix')
+            ->findAll());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
+            ->findAll());
     }
 
     /**

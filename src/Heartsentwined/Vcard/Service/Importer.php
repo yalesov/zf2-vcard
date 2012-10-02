@@ -348,7 +348,41 @@ class Importer
      */
     public function importName()
     {
-        // not yet implemented
+        $em = $this->getEm();
+        $card = $this->getCard();
+
+        static $components = array(
+            'FamilyName',
+            'GivenName',
+            'AdditionalName',
+            'Prefix',
+            'Suffix'
+        );
+
+        if ((string) $card->N === '') return $this;
+
+        foreach ($card->N as $nameSrc) {
+            $name = new Entity\Name;
+            $em->persist($name);
+            $this->getVcard()->addName($name);
+            $name->setParam($this->importParam($nameSrc));
+
+            foreach (explode(';', $nameSrc) as $key => $componentSrc) {
+                if (empty($componentSrc)) continue;
+
+                foreach (explode(',', $componentSrc) as $valueSrc) {
+                    $componentClass =
+                        "Heartsentwined\\Vcard\Entity\\{$components[$key]}";
+                    $component = new $componentClass;
+                    $em->persist($component);
+                    $component->setValue($valueSrc);
+                    $setter = "add{$components[$key]}";
+                    $name->$setter($component);
+                }
+            }
+        }
+
+        return $this;
     }
 
     /**

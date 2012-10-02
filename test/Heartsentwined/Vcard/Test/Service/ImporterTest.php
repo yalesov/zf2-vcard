@@ -433,6 +433,9 @@ STR
             $this->assertSame('suffix', $suffixes[0]->getValue());
         }
         $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Name')
+            ->findAll());
+        $this->assertCount(1, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
             ->findAll());
         $this->assertCount(1, $this->em
@@ -481,6 +484,9 @@ STR
             $suffixes = $name->getSuffixes();
             $this->assertCount(0, $suffixes);
         }
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Name')
+            ->findAll());
         $this->assertCount(1, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
             ->findAll());
@@ -563,6 +569,9 @@ STR
             $this->assertSame('suffix2', $suffixes[1]->getValue());
         }
         $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Name')
+            ->findAll());
+        $this->assertCount(3, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
             ->findAll());
         $this->assertCount(3, $this->em
@@ -617,6 +626,9 @@ STR
             $suffixes = $name->getSuffixes();
             $this->assertCount(0, $suffixes);
         }
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Name')
+            ->findAll());
         $this->assertCount(4, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
             ->findAll());
@@ -684,6 +696,9 @@ STR
             $this->assertSame('suffix', $suffixes[0]->getValue());
         }
         $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Name')
+            ->findAll());
+        $this->assertCount(6, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
             ->findAll());
         $this->assertCount(6, $this->em
@@ -714,6 +729,9 @@ STR
         $this->em->flush();
         $names = $vcard->getNames();
         $this->assertCount(0, $names);
+        $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Name')
+            ->findAll());
         $this->assertCount(6, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\FamilyName')
             ->findAll());

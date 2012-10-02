@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\Nickname
  */
@@ -29,11 +31,11 @@ class Nickname
     {
         $this->values = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -43,20 +45,20 @@ class Nickname
     /**
      * Set param
      *
-     * @param  Heartsentwined\Vcard\Entity\Param $param
+     * @param Heartsentwined\Vcard\Entity\Param $param
      * @return Nickname
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-
+    
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param
+     * @return Heartsentwined\Vcard\Entity\Param 
      */
     public function getParam()
     {
@@ -66,13 +68,13 @@ class Nickname
     /**
      * Add values
      *
-     * @param  Heartsentwined\Vcard\Entity\NicknameValue $values
+     * @param Heartsentwined\Vcard\Entity\NicknameValue $values
      * @return Nickname
      */
     public function addValue(\Heartsentwined\Vcard\Entity\NicknameValue $values)
     {
         $this->values[] = $values;
-
+    
         return $this;
     }
 
@@ -89,7 +91,7 @@ class Nickname
     /**
      * Get values
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getValues()
     {

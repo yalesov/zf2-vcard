@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\Address
  */
@@ -42,10 +44,11 @@ class Address
      */
     private $param;
 
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -55,20 +58,20 @@ class Address
     /**
      * Set street
      *
-     * @param  string  $street
+     * @param string $street
      * @return Address
      */
     public function setStreet($street)
     {
         $this->street = $street;
-
+    
         return $this;
     }
 
     /**
      * Get street
      *
-     * @return string
+     * @return string 
      */
     public function getStreet()
     {
@@ -78,20 +81,20 @@ class Address
     /**
      * Set locality
      *
-     * @param  string  $locality
+     * @param string $locality
      * @return Address
      */
     public function setLocality($locality)
     {
         $this->locality = $locality;
-
+    
         return $this;
     }
 
     /**
      * Get locality
      *
-     * @return string
+     * @return string 
      */
     public function getLocality()
     {
@@ -101,20 +104,20 @@ class Address
     /**
      * Set region
      *
-     * @param  string  $region
+     * @param string $region
      * @return Address
      */
     public function setRegion($region)
     {
         $this->region = $region;
-
+    
         return $this;
     }
 
     /**
      * Get region
      *
-     * @return string
+     * @return string 
      */
     public function getRegion()
     {
@@ -124,20 +127,20 @@ class Address
     /**
      * Set postalCode
      *
-     * @param  string  $postalCode
+     * @param string $postalCode
      * @return Address
      */
     public function setPostalCode($postalCode)
     {
         $this->postalCode = $postalCode;
-
+    
         return $this;
     }
 
     /**
      * Get postalCode
      *
-     * @return string
+     * @return string 
      */
     public function getPostalCode()
     {
@@ -147,20 +150,20 @@ class Address
     /**
      * Set country
      *
-     * @param  string  $country
+     * @param string $country
      * @return Address
      */
     public function setCountry($country)
     {
         $this->country = $country;
-
+    
         return $this;
     }
 
     /**
      * Get country
      *
-     * @return string
+     * @return string 
      */
     public function getCountry()
     {
@@ -170,20 +173,20 @@ class Address
     /**
      * Set param
      *
-     * @param  Heartsentwined\Vcard\Entity\Param $param
+     * @param Heartsentwined\Vcard\Entity\Param $param
      * @return Address
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-
+    
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param
+     * @return Heartsentwined\Vcard\Entity\Param 
      */
     public function getParam()
     {

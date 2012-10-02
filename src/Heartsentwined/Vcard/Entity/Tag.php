@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\Tag
  */
@@ -29,11 +31,11 @@ class Tag
     {
         $this->values = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -43,20 +45,20 @@ class Tag
     /**
      * Set param
      *
-     * @param  Heartsentwined\Vcard\Entity\Param $param
+     * @param Heartsentwined\Vcard\Entity\Param $param
      * @return Tag
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-
+    
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param
+     * @return Heartsentwined\Vcard\Entity\Param 
      */
     public function getParam()
     {
@@ -66,13 +68,13 @@ class Tag
     /**
      * Add values
      *
-     * @param  Heartsentwined\Vcard\Entity\TagValue $values
+     * @param Heartsentwined\Vcard\Entity\TagValue $values
      * @return Tag
      */
     public function addValue(\Heartsentwined\Vcard\Entity\TagValue $values)
     {
         $this->values[] = $values;
-
+    
         return $this;
     }
 
@@ -89,7 +91,7 @@ class Tag
     /**
      * Get values
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getValues()
     {

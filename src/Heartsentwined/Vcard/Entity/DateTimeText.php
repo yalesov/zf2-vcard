@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\DateTimeText
  */
@@ -62,10 +64,11 @@ class DateTimeText
      */
     private $valueText;
 
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -75,20 +78,20 @@ class DateTimeText
     /**
      * Set format
      *
-     * @param  string       $format
+     * @param string $format
      * @return DateTimeText
      */
     public function setFormat($format)
     {
         $this->format = $format;
-
+    
         return $this;
     }
 
     /**
      * Get format
      *
-     * @return string
+     * @return string 
      */
     public function getFormat()
     {
@@ -98,20 +101,20 @@ class DateTimeText
     /**
      * Set value
      *
-     * @param  \DateTime    $value
+     * @param \DateTime $value
      * @return DateTimeText
      */
     public function setValue($value)
     {
         $this->value = $value;
-
+    
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getValue()
     {
@@ -121,20 +124,20 @@ class DateTimeText
     /**
      * Set year
      *
-     * @param  integer      $year
+     * @param integer $year
      * @return DateTimeText
      */
     public function setYear($year)
     {
         $this->year = $year;
-
+    
         return $this;
     }
 
     /**
      * Get year
      *
-     * @return integer
+     * @return integer 
      */
     public function getYear()
     {
@@ -144,20 +147,20 @@ class DateTimeText
     /**
      * Set month
      *
-     * @param  integer      $month
+     * @param integer $month
      * @return DateTimeText
      */
     public function setMonth($month)
     {
         $this->month = $month;
-
+    
         return $this;
     }
 
     /**
      * Get month
      *
-     * @return integer
+     * @return integer 
      */
     public function getMonth()
     {
@@ -167,20 +170,20 @@ class DateTimeText
     /**
      * Set day
      *
-     * @param  integer      $day
+     * @param integer $day
      * @return DateTimeText
      */
     public function setDay($day)
     {
         $this->day = $day;
-
+    
         return $this;
     }
 
     /**
      * Get day
      *
-     * @return integer
+     * @return integer 
      */
     public function getDay()
     {
@@ -190,20 +193,20 @@ class DateTimeText
     /**
      * Set hour
      *
-     * @param  integer      $hour
+     * @param integer $hour
      * @return DateTimeText
      */
     public function setHour($hour)
     {
         $this->hour = $hour;
-
+    
         return $this;
     }
 
     /**
      * Get hour
      *
-     * @return integer
+     * @return integer 
      */
     public function getHour()
     {
@@ -213,20 +216,20 @@ class DateTimeText
     /**
      * Set minute
      *
-     * @param  integer      $minute
+     * @param integer $minute
      * @return DateTimeText
      */
     public function setMinute($minute)
     {
         $this->minute = $minute;
-
+    
         return $this;
     }
 
     /**
      * Get minute
      *
-     * @return integer
+     * @return integer 
      */
     public function getMinute()
     {
@@ -236,20 +239,20 @@ class DateTimeText
     /**
      * Set second
      *
-     * @param  integer      $second
+     * @param integer $second
      * @return DateTimeText
      */
     public function setSecond($second)
     {
         $this->second = $second;
-
+    
         return $this;
     }
 
     /**
      * Get second
      *
-     * @return integer
+     * @return integer 
      */
     public function getSecond()
     {
@@ -259,20 +262,20 @@ class DateTimeText
     /**
      * Set timezone
      *
-     * @param  string       $timezone
+     * @param string $timezone
      * @return DateTimeText
      */
     public function setTimezone($timezone)
     {
         $this->timezone = $timezone;
-
+    
         return $this;
     }
 
     /**
      * Get timezone
      *
-     * @return string
+     * @return string 
      */
     public function getTimezone()
     {
@@ -282,20 +285,20 @@ class DateTimeText
     /**
      * Set valueText
      *
-     * @param  string       $valueText
+     * @param string $valueText
      * @return DateTimeText
      */
     public function setValueText($valueText)
     {
         $this->valueText = $valueText;
-
+    
         return $this;
     }
 
     /**
      * Get valueText
      *
-     * @return string
+     * @return string 
      */
     public function getValueText()
     {

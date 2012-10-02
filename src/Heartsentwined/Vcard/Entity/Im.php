@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\Im
  */
@@ -32,10 +34,11 @@ class Im
      */
     private $protocol;
 
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -45,20 +48,20 @@ class Im
     /**
      * Set value
      *
-     * @param  string $value
+     * @param string $value
      * @return Im
      */
     public function setValue($value)
     {
         $this->value = $value;
-
+    
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string
+     * @return string 
      */
     public function getValue()
     {
@@ -68,20 +71,20 @@ class Im
     /**
      * Set isUri
      *
-     * @param  boolean $isUri
+     * @param boolean $isUri
      * @return Im
      */
     public function setIsUri($isUri)
     {
         $this->isUri = $isUri;
-
+    
         return $this;
     }
 
     /**
      * Get isUri
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getIsUri()
     {
@@ -91,20 +94,20 @@ class Im
     /**
      * Set param
      *
-     * @param  Heartsentwined\Vcard\Entity\Param $param
+     * @param Heartsentwined\Vcard\Entity\Param $param
      * @return Im
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-
+    
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param
+     * @return Heartsentwined\Vcard\Entity\Param 
      */
     public function getParam()
     {
@@ -114,20 +117,20 @@ class Im
     /**
      * Set protocol
      *
-     * @param  Heartsentwined\Vcard\Entity\ImProtocol $protocol
+     * @param Heartsentwined\Vcard\Entity\ImProtocol $protocol
      * @return Im
      */
     public function setProtocol(\Heartsentwined\Vcard\Entity\ImProtocol $protocol = null)
     {
         $this->protocol = $protocol;
-
+    
         return $this;
     }
 
     /**
      * Get protocol
      *
-     * @return Heartsentwined\Vcard\Entity\ImProtocol
+     * @return Heartsentwined\Vcard\Entity\ImProtocol 
      */
     public function getProtocol()
     {

@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\Phone
  */
@@ -34,11 +36,11 @@ class Phone
     {
         $this->phoneTypes = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -48,20 +50,20 @@ class Phone
     /**
      * Set value
      *
-     * @param  string $value
+     * @param string $value
      * @return Phone
      */
     public function setValue($value)
     {
         $this->value = $value;
-
+    
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string
+     * @return string 
      */
     public function getValue()
     {
@@ -71,20 +73,20 @@ class Phone
     /**
      * Set param
      *
-     * @param  Heartsentwined\Vcard\Entity\Param $param
+     * @param Heartsentwined\Vcard\Entity\Param $param
      * @return Phone
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-
+    
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param
+     * @return Heartsentwined\Vcard\Entity\Param 
      */
     public function getParam()
     {
@@ -94,13 +96,13 @@ class Phone
     /**
      * Add phoneTypes
      *
-     * @param  Heartsentwined\Vcard\Entity\PhoneType $phoneTypes
+     * @param Heartsentwined\Vcard\Entity\PhoneType $phoneTypes
      * @return Phone
      */
     public function addPhoneType(\Heartsentwined\Vcard\Entity\PhoneType $phoneTypes)
     {
         $this->phoneTypes[] = $phoneTypes;
-
+    
         return $this;
     }
 
@@ -117,7 +119,7 @@ class Phone
     /**
      * Get phoneTypes
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getPhoneTypes()
     {

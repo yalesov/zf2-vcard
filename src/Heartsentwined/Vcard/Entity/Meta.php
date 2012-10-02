@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\Meta
  */
@@ -17,10 +19,11 @@ class Meta
      */
     private $status;
 
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -30,20 +33,20 @@ class Meta
     /**
      * Set status
      *
-     * @param  string $status
+     * @param string $status
      * @return Meta
      */
     public function setStatus($status)
     {
         $this->status = $status;
-
+    
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return string
+     * @return string 
      */
     public function getStatus()
     {

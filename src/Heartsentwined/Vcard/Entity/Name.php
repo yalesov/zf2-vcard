@@ -192,7 +192,7 @@ class Name
      * @param  Heartsentwined\Vcard\Entity\Prefix $prefixes
      * @return Name
      */
-    public function addPrefixe(\Heartsentwined\Vcard\Entity\Prefix $prefixes)
+    public function addPrefix(\Heartsentwined\Vcard\Entity\Prefix $prefixes)
     {
         $this->prefixes[] = $prefixes;
 
@@ -204,7 +204,7 @@ class Name
      *
      * @param Heartsentwined\Vcard\Entity\Prefix $prefixes
      */
-    public function removePrefixe(\Heartsentwined\Vcard\Entity\Prefix $prefixes)
+    public function removePrefix(\Heartsentwined\Vcard\Entity\Prefix $prefixes)
     {
         $this->prefixes->removeElement($prefixes);
     }
@@ -225,7 +225,7 @@ class Name
      * @param  Heartsentwined\Vcard\Entity\Suffix $suffixes
      * @return Name
      */
-    public function addSuffixe(\Heartsentwined\Vcard\Entity\Suffix $suffixes)
+    public function addSuffix(\Heartsentwined\Vcard\Entity\Suffix $suffixes)
     {
         $this->suffixes[] = $suffixes;
 
@@ -237,7 +237,7 @@ class Name
      *
      * @param Heartsentwined\Vcard\Entity\Suffix $suffixes
      */
-    public function removeSuffixe(\Heartsentwined\Vcard\Entity\Suffix $suffixes)
+    public function removeSuffix(\Heartsentwined\Vcard\Entity\Suffix $suffixes)
     {
         $this->suffixes->removeElement($suffixes);
     }

@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\NicknameValue
  */
@@ -17,10 +19,11 @@ class NicknameValue
      */
     private $value;
 
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -30,20 +33,20 @@ class NicknameValue
     /**
      * Set value
      *
-     * @param  string        $value
+     * @param string $value
      * @return NicknameValue
      */
     public function setValue($value)
     {
         $this->value = $value;
-
+    
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string
+     * @return string 
      */
     public function getValue()
     {

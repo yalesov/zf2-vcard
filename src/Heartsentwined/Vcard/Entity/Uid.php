@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\Uid
  */
@@ -27,10 +29,11 @@ class Uid
      */
     private $vcard;
 
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -40,20 +43,20 @@ class Uid
     /**
      * Set value
      *
-     * @param  string $value
+     * @param string $value
      * @return Uid
      */
     public function setValue($value)
     {
         $this->value = $value;
-
+    
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string
+     * @return string 
      */
     public function getValue()
     {
@@ -63,20 +66,20 @@ class Uid
     /**
      * Set param
      *
-     * @param  Heartsentwined\Vcard\Entity\Param $param
+     * @param Heartsentwined\Vcard\Entity\Param $param
      * @return Uid
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-
+    
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param
+     * @return Heartsentwined\Vcard\Entity\Param 
      */
     public function getParam()
     {
@@ -86,20 +89,20 @@ class Uid
     /**
      * Set vcard
      *
-     * @param  Heartsentwined\Vcard\Entity\Vcard $vcard
+     * @param Heartsentwined\Vcard\Entity\Vcard $vcard
      * @return Uid
      */
     public function setVcard(\Heartsentwined\Vcard\Entity\Vcard $vcard = null)
     {
         $this->vcard = $vcard;
-
+    
         return $this;
     }
 
     /**
      * Get vcard
      *
-     * @return Heartsentwined\Vcard\Entity\Vcard
+     * @return Heartsentwined\Vcard\Entity\Vcard 
      */
     public function getVcard()
     {

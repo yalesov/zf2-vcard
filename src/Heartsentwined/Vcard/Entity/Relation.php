@@ -2,6 +2,8 @@
 
 namespace Heartsentwined\Vcard\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Heartsentwined\Vcard\Entity\Relation
  */
@@ -34,11 +36,11 @@ class Relation
     {
         $this->relationTypes = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -48,20 +50,20 @@ class Relation
     /**
      * Set value
      *
-     * @param  string   $value
+     * @param string $value
      * @return Relation
      */
     public function setValue($value)
     {
         $this->value = $value;
-
+    
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string
+     * @return string 
      */
     public function getValue()
     {
@@ -71,20 +73,20 @@ class Relation
     /**
      * Set param
      *
-     * @param  Heartsentwined\Vcard\Entity\Param $param
+     * @param Heartsentwined\Vcard\Entity\Param $param
      * @return Relation
      */
     public function setParam(\Heartsentwined\Vcard\Entity\Param $param = null)
     {
         $this->param = $param;
-
+    
         return $this;
     }
 
     /**
      * Get param
      *
-     * @return Heartsentwined\Vcard\Entity\Param
+     * @return Heartsentwined\Vcard\Entity\Param 
      */
     public function getParam()
     {
@@ -94,13 +96,13 @@ class Relation
     /**
      * Add relationTypes
      *
-     * @param  Heartsentwined\Vcard\Entity\RelationType $relationTypes
+     * @param Heartsentwined\Vcard\Entity\RelationType $relationTypes
      * @return Relation
      */
     public function addRelationType(\Heartsentwined\Vcard\Entity\RelationType $relationTypes)
     {
         $this->relationTypes[] = $relationTypes;
-
+    
         return $this;
     }
 
@@ -117,7 +119,7 @@ class Relation
     /**
      * Get relationTypes
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return Doctrine\Common\Collections\Collection 
      */
     public function getRelationTypes()
     {

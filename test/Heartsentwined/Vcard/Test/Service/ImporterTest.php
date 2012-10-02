@@ -383,7 +383,7 @@ STR
      */
     public function testImportName()
     {
-        // standard name
+        // standard entry
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
 N:family;given;additional;prefix;suffix
@@ -587,7 +587,7 @@ STR
             ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
             ->findAll());
 
-        // incomplete components
+        // missing components
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
 N:family;given
@@ -645,7 +645,7 @@ STR
             ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
             ->findAll());
 
-        // multiple names
+        // multiple entries
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
 N:family;given;additional;prefix;suffix
@@ -714,7 +714,7 @@ STR
             ->getRepository('Heartsentwined\Vcard\Entity\Suffix')
             ->findAll());
 
-        // no name
+        // no entry
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
 FOO:bar

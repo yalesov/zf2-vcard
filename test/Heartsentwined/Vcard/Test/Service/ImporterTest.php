@@ -245,6 +245,9 @@ STR
         $this->assertCount(2, $phones);
         $this->assertCount(2, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\Phone')->findAll());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\PhoneType')
+            ->findAll());
 
         $this->assertSame('123', $phones[0]->getValue());
         $types = $phones[0]->getPhoneTypes();
@@ -274,6 +277,9 @@ STR
         $this->assertCount(1, $phones);
         $this->assertCount(3, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\Phone')->findAll());
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\PhoneType')
+            ->findAll());
 
         $this->assertSame('123', $phones[0]->getValue());
         $types = $phones[0]->getPhoneTypes();

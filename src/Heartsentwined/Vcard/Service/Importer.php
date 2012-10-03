@@ -440,9 +440,14 @@ class Importer
         }
         $kind = new Entity\Kind;
         $em->persist($kind);
-        $kind
-            ->setValue($kindValue)
-            ->setParam($this->importParam($card->KIND));
+        $kind->setValue($kindValue);
+        if ((string) $card->KIND !== '') {
+            $kind->setParam($this->importParam($card->KIND));
+        } else {
+            $param = new Entity\Param;
+            $em->persist($param);
+            $kind->setParam($param);
+        }
         $this->getVcard()->setKind($kind);
 
         return $this;

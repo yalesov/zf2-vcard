@@ -581,6 +581,28 @@ STR
         $this->assertCount(2, $this->em
             ->getRepository('Heartsentwined\Vcard\Entity\KindValue')
             ->findAll());
+
+        // no kind: assume default
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importKind();
+        $this->em->flush();
+        $kind = $vcard->getKind();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Kind', $kind);
+        $this->assertSame($defaultValue, $kind->getValue());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\KindValue')
+            ->findAll());
     }
 
     /**

@@ -273,6 +273,56 @@ class Importer
     }
 
     /**
+     * multiple instances properties, with comma-separated values + type param
+     *
+     * @param  Property   $property
+     * @param  string     $entityClass
+     * @return Entity\*[]
+     */
+    public function importMultipleWithType(Property $property, $entityClass)
+    {
+        ArgValidator::assertClass($entityClass);
+
+        $em         = $this->getEm();
+        $vcard      = $this->getVcard();
+
+        $entityName = end(explode('\\', $entityClass));
+        $entityRepo = $em->getRepository($entityClass);
+        $typeClass  = "{$entityClass}Type";
+        $typeRepo   = $em->getRepository($typeClass);
+        $typeSetter = "add{$entityName}Type";
+        $typeMap    = array();
+
+        $entities   = array();
+        foreach ($property as $eachProperty) {
+            $entity = new $entityClass;
+            $em->persist($entity);
+            $entities[] = $entity;
+            $entity
+                ->setValue((string) $eachProperty)
+                ->setParam($this->importParam($eachProperty));
+            foreach ($eachProperty['TYPE'] as $eachType) {
+                foreach (explode(',', $eachType) as $typeSrc) {
+                    if ($typeSrc === '') continue;
+
+                    if (isset($typeMap[$typeSrc])) {
+                        $type = $typeMap[$typeSrc];
+                    } elseif (!$type = $typeRepo
+                        ->findOneBy(array('value' => $typeSrc))) {
+                        $type = new $typeClass;
+                        $em->persist($type);
+                        $type->setValue($typeSrc);
+                        $typeMap[$typeSrc] = $type;
+                    }
+                    $entity->$typeSetter($type);
+                }
+            }
+        }
+
+        return $entities;
+    }
+
+    /**
      * SOURCE - Source
      *
      * @return self

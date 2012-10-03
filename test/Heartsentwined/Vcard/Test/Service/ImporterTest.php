@@ -228,6 +228,67 @@ STR
     /**
      * @depends testParseSource
      */
+    public function testImportMultipleWithType()
+    {
+        // simple entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+TEL;TYPE=foo:123
+TEL;TYPE=bar:456
+END:VCARD
+STR
+        );
+
+        $phones = $this->importer->importMultipleWithType(
+            $card->TEL, 'Heartsentwined\Vcard\Entity\Phone');
+        $this->em->flush();
+        $this->assertCount(2, $phones);
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Phone')->findAll());
+
+        $this->assertSame('123', $phones[0]->getValue());
+        $types = $phones[0]->getPhoneTypes();
+        $this->assertCount(1, $types);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\PhoneType', $types[0]);
+        $this->assertSame('foo', $types[0]->getValue());
+
+        $this->assertSame('456', $phones[1]->getValue());
+        $types = $phones[1]->getPhoneTypes();
+        $this->assertCount(1, $types);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\PhoneType', $types[0]);
+        $this->assertSame('bar', $types[0]->getValue());
+
+        // different type syntaxes
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+TEL;TYPE=foo;TYPE=bar;TYPE=baz,qux:123
+END:VCARD
+STR
+        );
+
+        $phones = $this->importer->importMultipleWithType(
+            $card->TEL, 'Heartsentwined\Vcard\Entity\Phone');
+        $this->em->flush();
+        $this->assertCount(1, $phones);
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Phone')->findAll());
+
+        $this->assertSame('123', $phones[0]->getValue());
+        $types = $phones[0]->getPhoneTypes();
+        $this->assertCount(4, $types);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\PhoneType', $types[0]);
+        $this->assertSame('foo', $types[0]->getValue());
+        $this->assertSame('bar', $types[1]->getValue());
+        $this->assertSame('baz', $types[2]->getValue());
+        $this->assertSame('qux', $types[3]->getValue());
+    }
+
+    /**
+     * @depends testParseSource
+     */
     public function testImportSingle()
     {
         $card = $this->importer->parseSource(<<<STR

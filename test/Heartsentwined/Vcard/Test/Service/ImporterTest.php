@@ -513,6 +513,7 @@ STR
         $defaultValue->setValue($default);
         $this->em->flush();
 
+        // default value
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
 KIND:$default
@@ -534,6 +535,7 @@ STR
             ->getRepository('Heartsentwined\Vcard\Entity\KindValue')
             ->findAll());
 
+        // empty: assume default
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
 KIND:
@@ -555,6 +557,7 @@ STR
             ->getRepository('Heartsentwined\Vcard\Entity\KindValue')
             ->findAll());
 
+        // new kind
         $card = $this->importer->parseSource(<<<STR
 BEGIN:VCARD
 KIND:foo

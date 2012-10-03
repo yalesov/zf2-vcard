@@ -305,14 +305,14 @@ class Importer
                 foreach (explode(',', $eachType) as $typeSrc) {
                     if ($typeSrc === '') continue;
 
-                    if (isset($typeMap[$typeSrc])) {
-                        $type = $typeMap[$typeSrc];
+                    if (isset($typeMap[$typeClass][$typeSrc])) {
+                        $type = $typeMap[$typeClass][$typeSrc];
                     } elseif (!$type = $typeRepo
                         ->findOneBy(array('value' => $typeSrc))) {
                         $type = new $typeClass;
                         $em->persist($type);
                         $type->setValue($typeSrc);
-                        $typeMap[$typeSrc] = $type;
+                        $typeMap[$typeClass][$typeSrc] = $type;
                     }
                     $entity->$typeSetter($type);
                 }

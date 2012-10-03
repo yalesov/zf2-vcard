@@ -608,7 +608,22 @@ class Importer
      */
     public function importPhone()
     {
-        // not yet implemented
+        $card = $this->getCard();
+        if ((string) $card->TEL === '') return $this;
+
+        $vcard = $this->getVcard();
+        foreach ($card->TEL as $property) {
+            if ((string) $property['TYPE'] === '') {
+                $property['TYPE'] = Repository\PhoneType::DEF;
+            }
+        }
+        foreach ($this->importMultipleWithType($card->TEL,
+            'Heartsentwined\Vcard\Entity\Phone')
+        as $phone) {
+            $vcard->addPhone($phone);
+        }
+
+        return $this;
     }
 
     /**

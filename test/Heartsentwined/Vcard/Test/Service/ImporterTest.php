@@ -1515,7 +1515,89 @@ STR
      */
     public function testImportPhone()
     {
-        $this->fail('not yet implemented');
+        // standard entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+TEL;TYPE=foo:foo
+TEL;TYPE=bar:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addPhone'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addPhone');
+
+        $this->importer->importPhone();
+
+        // test default type
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+TEL:foo
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addPhone'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(1))
+            ->method('addPhone');
+
+        $this->importer->importPhone();
+
+        $this->assertSame(
+            Repository\PhoneType::DEF, (string) $card->TEL['TYPE']);
+
+        // empty entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+TEL:
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addPhone'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->never())
+            ->method('addPhone');
+
+        $this->importer->importPhone();
+
+        // no entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addPhone'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->never())
+            ->method('addPhone');
+
+        $this->importer->importPhone();
     }
 
     /**

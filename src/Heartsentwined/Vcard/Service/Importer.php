@@ -118,6 +118,58 @@ class Importer
     }
 
     /**
+     * main method: import a vcard
+     *
+     * @param  string       $vcardStr vcard source string
+     * @return Entity\Vcard
+     */
+    public function import($vcardStr)
+    {
+        ArgValidator::assert($vcardStr, 'string');
+
+        $vcard = new Entity\Vcard;
+        $this
+            ->setCard(
+                $this->parseSource(
+                    $this->normalizeSource($vcardStr)))
+            ->setVcard($vcard)
+            ->importSource()
+            ->importSource()
+            ->importKind()
+            ->importFormattedName()
+            ->importName()
+            ->importNickname()
+            ->importPhoto()
+            ->importBirthday()
+            ->importAnniversary()
+            ->importGender()
+            ->importAddress()
+            ->importPhone()
+            ->importEmail()
+            ->importIm()
+            ->importLanguage()
+            ->importTimezone()
+            ->importGeo()
+            ->importTitle()
+            ->importRole()
+            ->importLogo()
+            ->importOrg()
+            ->importMember()
+            ->importRelation()
+            ->importTag()
+            ->importNote()
+            ->importSound()
+            ->importUid()
+            ->importUrl()
+            ->importPublicKey()
+            ->importFreebusy()
+            ->importCalendar()
+            ->importCalendarRequest();
+
+        return $vcard;
+    }
+
+    /**
      * normalize vcard source for parsing
      *
      * @param  string $vcardStr vcard source string

@@ -3406,4 +3406,16 @@ STR
 
         $this->importer->importCalendarRequest();
     }
+
+    public function testImport()
+    {
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Vcard',
+            $this->importer->import(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        ));
+    }
 }

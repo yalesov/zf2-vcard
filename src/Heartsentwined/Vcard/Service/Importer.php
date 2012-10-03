@@ -342,6 +342,61 @@ class Importer
     }
 
     /**
+     * single instance properties, with datetime / text values
+     *
+     * @param  Property $property
+     * @param  string   $entityClass
+     * @return Entity\*
+     */
+    public function importSingleDatetime(Property $property, $entityClass)
+    {
+        ArgValidator::assertClass($entityClass);
+
+        $em             = $this->getEm();
+        $vcard          = $this->getVcard();
+        $dateTimeParser = $this->getDateTimeParser();
+        $entityName     = end(explode('\\', $entityClass));
+
+        //get first instance
+        foreach ($property as $property) { break; }
+
+        $entity = new $entityClass;
+        $em->persist($entity);
+        $dateTimeText = new Entity\DateTimeText;
+        $em->persist($dateTimeText);
+        $entity->setValue($dateTimeText);
+
+        if ($property['VALUE'] == 'text') {
+            $dateTimeText
+                ->setFormat(Repository\DateTimeText::TEXT)
+                ->setValueText((string) $property);
+        } else {
+            $dt = $dateTimeParser->parseDateTime((string) $property);
+            if ($timestamp = $dateTimeParser->createTimestamp(
+                $dt['year'], $dt['month'], $dt['day'],
+                $dt['hour'], $dt['minute'], $dt['second'], $dt['timezone'])) {
+                $dateTimeText
+                    ->setFormat(Repository\DateTimeText::FULL)
+                    ->setValue(
+                        \DateTime::createFromFormat('U', $timestamp));
+            } else {
+                $dateTimeText
+                    ->setFormat(Repository\DateTimeText::PARTIAL);
+            }
+            $dateTimeText
+                ->setYear($dt['year'])
+                ->setMonth($dt['month'])
+                ->setDay($dt['day'])
+                ->setHour($dt['hour'])
+                ->setMinute($dt['minute'])
+                ->setSecond($dt['second'])
+                ->setTimezone($dt['timezone']);
+        }
+
+        return $entity;
+    }
+
+    /**
      * SOURCE - Source
      *
      * @return self

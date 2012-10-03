@@ -298,6 +298,123 @@ STR
     /**
      * @depends testParseSource
      */
+    public function testImportSingleDateTime()
+    {
+        // full date
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+BDAY:19900101T010101Z
+BDAY:19900101T010101Z
+END:VCARD
+STR
+        );
+
+        $birthday = $this->importer->importSingleDatetime(
+            $card->BDAY, 'Heartsentwined\Vcard\Entity\Birthday');
+        $this->em->flush();
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Birthday')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\DateTimeText')
+            ->findAll());
+
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Birthday', $birthday);
+        $dateTimeText = $birthday->getValue();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\DateTimeText', $dateTimeText);
+        $this->assertSame(
+            Repository\DateTimeText::FULL, $dateTimeText->getFormat());
+        $this->assertSame(
+            DateTimeParser::createTimestamp(
+                '1990', '01', '01', '01', '01', '01', '+0000'),
+            $dateTimeText->getValue()->getTimestamp());
+        $this->assertSame('1990', $dateTimeText->getYear());
+        $this->assertSame('01', $dateTimeText->getMonth());
+        $this->assertSame('01', $dateTimeText->getDay());
+        $this->assertSame('01', $dateTimeText->getHour());
+        $this->assertSame('01', $dateTimeText->getMinute());
+        $this->assertSame('01', $dateTimeText->getSecond());
+        $this->assertSame('+0000', $dateTimeText->getTimezone());
+        $this->assertEmpty($dateTimeText->getValueText());
+
+        // partial date
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+BDAY:--0101
+BDAY:--0101
+END:VCARD
+STR
+        );
+
+        $birthday = $this->importer->importSingleDatetime(
+            $card->BDAY, 'Heartsentwined\Vcard\Entity\Birthday');
+        $this->em->flush();
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Birthday')
+            ->findAll());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\DateTimeText')
+            ->findAll());
+
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Birthday', $birthday);
+        $dateTimeText = $birthday->getValue();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\DateTimeText', $dateTimeText);
+        $this->assertSame(
+            Repository\DateTimeText::PARTIAL, $dateTimeText->getFormat());
+        $this->assertEmpty($dateTimeText->getValue());
+        $this->assertEmpty($dateTimeText->getYear());
+        $this->assertSame('01', $dateTimeText->getMonth());
+        $this->assertSame('01', $dateTimeText->getDay());
+        $this->assertEmpty($dateTimeText->getHour());
+        $this->assertEmpty($dateTimeText->getMinute());
+        $this->assertEmpty($dateTimeText->getSecond());
+        $this->assertEmpty($dateTimeText->getTimezone());
+        $this->assertEmpty($dateTimeText->getValueText());
+
+        // text
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+BDAY;VALUE=text:foo
+BDAY;VALUE=text:foo
+END:VCARD
+STR
+        );
+
+        $birthday = $this->importer->importSingleDatetime(
+            $card->BDAY, 'Heartsentwined\Vcard\Entity\Birthday');
+        $this->em->flush();
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Birthday')
+            ->findAll());
+        $this->assertCount(3, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\DateTimeText')
+            ->findAll());
+
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Birthday', $birthday);
+        $dateTimeText = $birthday->getValue();
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\DateTimeText', $dateTimeText);
+        $this->assertSame(
+            Repository\DateTimeText::TEXT, $dateTimeText->getFormat());
+        $this->assertEmpty($dateTimeText->getValue());
+        $this->assertEmpty($dateTimeText->getYear());
+        $this->assertEmpty($dateTimeText->getMonth());
+        $this->assertEmpty($dateTimeText->getDay());
+        $this->assertEmpty($dateTimeText->getHour());
+        $this->assertEmpty($dateTimeText->getMinute());
+        $this->assertEmpty($dateTimeText->getSecond());
+        $this->assertEmpty($dateTimeText->getTimezone());
+        $this->assertSame('foo', $dateTimeText->getValueText());
+    }
+
+    /**
+     * @depends testParseSource
+     */
     public function testImportSingle()
     {
         $card = $this->importer->parseSource(<<<STR

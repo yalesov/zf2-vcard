@@ -653,7 +653,71 @@ class Importer
      */
     public function importIm()
     {
-        // not yet implemented
+        // non-standard properties
+        static $propertyProtocol = array(
+            'IMPP'              => '',
+            'X-AIM'             => Repository\ImProtocol::AIM,
+            'X-GADUGADU'        => Repository\ImProtocol::GADUGADU,
+            'X-GROUPWISE'       => Repository\ImProtocol::GROUPWISE,
+            'X-ICQ'             => Repository\ImProtocol::ICQ,
+            'X-JABBER'          => Repository\ImProtocol::JABBER,
+            'X-MSN'             => Repository\ImProtocol::MSN,
+            'X-SKYPE'           => Repository\ImProtocol::SKYPE,
+            'X-SKYPE-USERNAME'  => Repository\ImProtocol::SKYPE,
+            'X-TWITTER'         => Repository\ImProtocol::TWITTER,
+            'X-YAHOO'           => Repository\ImProtocol::YAHOO,
+        );
+        static $uriProtocol = array(
+            'xmpp'      => Repository\ImProtocol::JABBER,
+            'aim'       => Repository\ImProtocol::AIM,
+            'callto'    => Repository\ImProtocol::SKYPE,
+            'gg'        => Repository\ImProtocol::GADUGADU,
+            'gtalk'     => Repository\ImProtocol::JABBER,
+            'msnim'     => Repository\ImProtocol::MSN,
+            'skype'     => Repository\ImProtocol::SKYPE,
+            'ymsgr'     => Repository\ImProtocol::YAHOO,
+            'im'        => Repository\ImProtocol::JABBER,
+        );
+        static $imProtocolMap = array();
+        $em             = $this->getEm();
+        $imProtocolRepo = $em
+            ->getRepository('Heartsentwined\Vcard\Entity\ImProtocol');
+        $card           = $this->getCard();
+        $vcard          = $this->getVcard();
+        foreach ($propertyProtocol as $property => $protocolSrc) {
+            if ((string) $card->$property === '') continue;
+
+            foreach ($card->$property as $imSrc) {
+                $im = new Entity\Im;
+                $em->persist($im);
+                $im
+                    ->setValue((string) $imSrc)
+                    ->setParam($this->importParam($imSrc));
+                $vcard->addIm($im);
+
+                // detect protocol from URI
+                if ($property === 'IMPP') {
+                    foreach ($uriProtocol as $uri => $protocol) {
+                        if (strpos($imSrc, "$uri:") !== false) {
+                            $protocolSrc = $protocol;
+                            $im->setIsUri(true);
+                            break;
+                        }
+                    }
+                }
+
+                if (isset($imProtocolMap[$protocolSrc])) {
+                    $imProtocol = $imProtocolMap[$protocolSrc];
+                    $im->setProtocol($imProtocol);
+                } elseif ($imProtocol = $imProtocolRepo
+                    ->findOneBy(array('value' => $protocolSrc))) {
+                    $imProtocolMap[$protocolSrc] = $imProtocol;
+                    $im->setProtocol($imProtocol);
+                }
+            }
+        }
+
+        return $this;
     }
 
     /**

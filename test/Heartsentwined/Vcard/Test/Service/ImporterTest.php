@@ -1672,7 +1672,189 @@ STR
      */
     public function testImportIm()
     {
-        $this->fail('not yet implemented');
+        $jabber = new Entity\ImProtocol;
+        $jabber->setValue(Repository\ImProtocol::JABBER);
+        $this->em->persist($jabber);
+
+        // standard entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+IMPP:foo
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importIm();
+        $this->em->flush();
+        $ims = $vcard->getIms();
+        $this->assertCount(1, $ims);
+        $this->assertInstanceOf('Heartsentwined\Vcard\Entity\Im', $ims[0]);
+        $this->assertSame('foo', $ims[0]->getValue());
+        $this->assertEmpty($ims[0]->getProtocol());
+        $this->assertEquals(false, $ims[0]->getIsUri());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Im')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\ImProtocol')
+            ->findAll());
+
+        // non-standard entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+X-JABBER:foo
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importIm();
+        $this->em->flush();
+        $ims = $vcard->getIms();
+        $this->assertCount(1, $ims);
+        $this->assertInstanceOf('Heartsentwined\Vcard\Entity\Im', $ims[0]);
+        $this->assertSame('foo', $ims[0]->getValue());
+        $this->assertSame($jabber, $ims[0]->getProtocol());
+        $this->assertEquals(false, $ims[0]->getIsUri());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Im')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\ImProtocol')
+            ->findAll());
+
+        // combined formats
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+IMPP:foo
+X-JABBER:foo
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importIm();
+        $this->em->flush();
+        $ims = $vcard->getIms();
+        $this->assertCount(2, $ims);
+        $this->assertInstanceOf('Heartsentwined\Vcard\Entity\Im', $ims[0]);
+        $this->assertSame('foo', $ims[0]->getValue());
+        $this->assertEmpty($ims[0]->getProtocol());
+        $this->assertEquals(false, $ims[0]->getIsUri());
+        $this->assertInstanceOf('Heartsentwined\Vcard\Entity\Im', $ims[1]);
+        $this->assertSame('foo', $ims[1]->getValue());
+        $this->assertSame($jabber, $ims[1]->getProtocol());
+        $this->assertEquals(false, $ims[1]->getIsUri());
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Im')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\ImProtocol')
+            ->findAll());
+
+        // detect protocol
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+IMPP:gtalk://foo
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importIm();
+        $this->em->flush();
+        $ims = $vcard->getIms();
+        $this->assertCount(1, $ims);
+        $this->assertInstanceOf('Heartsentwined\Vcard\Entity\Im', $ims[0]);
+        $this->assertSame('gtalk://foo', $ims[0]->getValue());
+        $this->assertSame($jabber, $ims[0]->getProtocol());
+        $this->assertTrue($ims[0]->getIsUri());
+        $this->assertCount(5, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Im')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\ImProtocol')
+            ->findAll());
+
+        // no protocol detection for non-standard properties, even on conflict
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+X-JABBER:msnim://foo
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importIm();
+        $this->em->flush();
+        $ims = $vcard->getIms();
+        $this->assertCount(1, $ims);
+        $this->assertInstanceOf('Heartsentwined\Vcard\Entity\Im', $ims[0]);
+        $this->assertSame('msnim://foo', $ims[0]->getValue());
+        $this->assertSame($jabber, $ims[0]->getProtocol());
+        $this->assertEquals(false, $ims[0]->getIsUri());
+        $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Im')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\ImProtocol')
+            ->findAll());
+
+        // empty entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+IMPP:
+X-JABBER:
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importIm();
+        $this->em->flush();
+        $ims = $vcard->getIms();
+        $this->assertCount(0, $ims);
+        $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Im')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\ImProtocol')
+            ->findAll());
+
+        // no entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importIm();
+        $this->em->flush();
+        $ims = $vcard->getIms();
+        $this->assertCount(0, $ims);
+        $this->assertCount(6, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Im')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\ImProtocol')
+            ->findAll());
     }
 
     /**

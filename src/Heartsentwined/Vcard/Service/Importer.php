@@ -333,13 +333,10 @@ class Importer
         if ((string) $card->SOURCE === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($sourceSrc = $card->SOURCE)
-            && count($sourceSrc)) {
-            foreach ($this->importMultiple($sourceSrc,
-                'Heartsentwined\Vcard\Entity\Source')
-            as $source) {
-                $vcard->addSource($source);
-            }
+        foreach ($this->importMultiple($card->SOURCE,
+            'Heartsentwined\Vcard\Entity\Source')
+        as $source) {
+            $vcard->addSource($source);
         }
 
         return $this;
@@ -385,13 +382,10 @@ class Importer
         if ((string) $card->FN === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($formattedNameSrc = $card->FN)
-            && count($formattedNameSrc)) {
-            foreach ($this->importMultiple($formattedNameSrc,
-                'Heartsentwined\Vcard\Entity\FormattedName')
-            as $formattedName) {
-                $vcard->addFormattedName($formattedName);
-            }
+        foreach ($this->importMultiple($card->FN,
+            'Heartsentwined\Vcard\Entity\FormattedName')
+        as $formattedName) {
+            $vcard->addFormattedName($formattedName);
         }
 
         return $this;
@@ -483,13 +477,10 @@ class Importer
         if ((string) $card->PHOTO === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($photoSrc = $card->PHOTO)
-            && count($photoSrc)) {
-            foreach ($this->importMultiple($photoSrc,
-                'Heartsentwined\Vcard\Entity\Photo')
-            as $photo) {
-                $vcard->addPhoto($photo);
-            }
+        foreach ($this->importMultiple($card->PHOTO,
+            'Heartsentwined\Vcard\Entity\Photo')
+        as $photo) {
+            $vcard->addPhoto($photo);
         }
 
         return $this;
@@ -631,13 +622,10 @@ class Importer
         if ((string) $card->EMAIL === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($emailSrc = $card->EMAIL)
-            && count($emailSrc)) {
-            foreach ($this->importMultiple($emailSrc,
-                'Heartsentwined\Vcard\Entity\Email')
-            as $email) {
-                $vcard->addEmail($email);
-            }
+        foreach ($this->importMultiple($card->EMAIL,
+            'Heartsentwined\Vcard\Entity\Email')
+        as $email) {
+            $vcard->addEmail($email);
         }
 
         return $this;
@@ -664,13 +652,10 @@ class Importer
         if ((string) $card->LANG === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($languageSrc = $card->LANG)
-            && count($languageSrc)) {
-            foreach ($this->importMultiple($languageSrc,
-                'Heartsentwined\Vcard\Entity\Language')
-            as $language) {
-                $vcard->addLanguage($language);
-            }
+        foreach ($this->importMultiple($card->LANG,
+            'Heartsentwined\Vcard\Entity\Language')
+        as $language) {
+            $vcard->addLanguage($language);
         }
 
         return $this;
@@ -687,13 +672,10 @@ class Importer
         if ((string) $card->TZ === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($timezoneSrc = $card->TZ)
-            && count($timezoneSrc)) {
-            foreach ($this->importMultiple($timezoneSrc,
-                'Heartsentwined\Vcard\Entity\Timezone')
-            as $timezone) {
-                $vcard->addTimezone($timezone);
-            }
+        foreach ($this->importMultiple($card->TZ,
+            'Heartsentwined\Vcard\Entity\Timezone')
+        as $timezone) {
+            $vcard->addTimezone($timezone);
         }
 
         return $this;
@@ -710,13 +692,10 @@ class Importer
         if ((string) $card->GEO === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($geoSrc = $card->GEO)
-            && count($geoSrc)) {
-            foreach ($this->importMultiple($geoSrc,
-                'Heartsentwined\Vcard\Entity\Geo')
-            as $geo) {
-                $vcard->addGeo($geo);
-            }
+        foreach ($this->importMultiple($card->GEO,
+            'Heartsentwined\Vcard\Entity\Geo')
+        as $geo) {
+            $vcard->addGeo($geo);
         }
 
         return $this;
@@ -733,13 +712,10 @@ class Importer
         if ((string) $card->TITLE === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($titleSrc = $card->TITLE)
-            && count($titleSrc)) {
-            foreach ($this->importMultiple($titleSrc,
-                'Heartsentwined\Vcard\Entity\Title')
-            as $title) {
-                $vcard->addTitle($title);
-            }
+        foreach ($this->importMultiple($card->TITLE,
+            'Heartsentwined\Vcard\Entity\Title')
+        as $title) {
+            $vcard->addTitle($title);
         }
 
         return $this;
@@ -756,13 +732,10 @@ class Importer
         if ((string) $card->ROLE === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($roleSrc = $card->ROLE)
-            && count($roleSrc)) {
-            foreach ($this->importMultiple($roleSrc,
-                'Heartsentwined\Vcard\Entity\Role')
-            as $role) {
-                $vcard->addRole($role);
-            }
+        foreach ($this->importMultiple($card->ROLE,
+            'Heartsentwined\Vcard\Entity\Role')
+        as $role) {
+            $vcard->addRole($role);
         }
 
         return $this;
@@ -779,13 +752,10 @@ class Importer
         if ((string) $card->LOGO === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($logoSrc = $card->LOGO)
-            && count($logoSrc)) {
-            foreach ($this->importMultiple($logoSrc,
-                'Heartsentwined\Vcard\Entity\Logo')
-            as $logo) {
-                $vcard->addLogo($logo);
-            }
+        foreach ($this->importMultiple($card->LOGO,
+            'Heartsentwined\Vcard\Entity\Logo')
+        as $logo) {
+            $vcard->addLogo($logo);
         }
 
         return $this;
@@ -802,13 +772,10 @@ class Importer
         if ((string) $card->ORG === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($orgSrc = $card->ORG)
-            && count($orgSrc)) {
-            foreach ($this->importMultiple($orgSrc,
-                'Heartsentwined\Vcard\Entity\Org')
-            as $org) {
-                $vcard->addOrg($org);
-            }
+        foreach ($this->importMultiple($card->ORG,
+            'Heartsentwined\Vcard\Entity\Org')
+        as $org) {
+            $vcard->addOrg($org);
         }
 
         return $this;
@@ -825,13 +792,10 @@ class Importer
         if ((string) $card->MEMBER === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($memberSrc = $card->MEMBER)
-            && count($memberSrc)) {
-            foreach ($this->importMultiple($memberSrc,
-                'Heartsentwined\Vcard\Entity\Member')
-            as $member) {
-                $vcard->addMember($member);
-            }
+        foreach ($this->importMultiple($card->MEMBER,
+            'Heartsentwined\Vcard\Entity\Member')
+        as $member) {
+            $vcard->addMember($member);
         }
 
         return $this;
@@ -868,13 +832,10 @@ class Importer
         if ((string) $card->NOTE === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($noteSrc = $card->NOTE)
-            && count($noteSrc)) {
-            foreach ($this->importMultiple($noteSrc,
-                'Heartsentwined\Vcard\Entity\Note')
-            as $note) {
-                $vcard->addNote($note);
-            }
+        foreach ($this->importMultiple($card->NOTE,
+            'Heartsentwined\Vcard\Entity\Note')
+        as $note) {
+            $vcard->addNote($note);
         }
 
         return $this;
@@ -891,13 +852,10 @@ class Importer
         if ((string) $card->SOUND === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($soundSrc = $card->SOUND)
-            && count($soundSrc)) {
-            foreach ($this->importMultiple($soundSrc,
-                'Heartsentwined\Vcard\Entity\Sound')
-            as $sound) {
-                $vcard->addSound($sound);
-            }
+        foreach ($this->importMultiple($card->SOUND,
+            'Heartsentwined\Vcard\Entity\Sound')
+        as $sound) {
+            $vcard->addSound($sound);
         }
 
         return $this;
@@ -930,13 +888,10 @@ class Importer
         if ((string) $card->URL === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($urlSrc = $card->URL)
-            && count($urlSrc)) {
-            foreach ($this->importMultiple($urlSrc,
-                'Heartsentwined\Vcard\Entity\Url')
-            as $url) {
-                $vcard->addUrl($url);
-            }
+        foreach ($this->importMultiple($card->URL,
+            'Heartsentwined\Vcard\Entity\Url')
+        as $url) {
+            $vcard->addUrl($url);
         }
 
         return $this;
@@ -953,13 +908,10 @@ class Importer
         if ((string) $card->KEY === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($publicKeySrc = $card->KEY)
-            && count($publicKeySrc)) {
-            foreach ($this->importMultiple($publicKeySrc,
-                'Heartsentwined\Vcard\Entity\PublicKey')
-            as $publicKey) {
-                $vcard->addPublicKey($publicKey);
-            }
+        foreach ($this->importMultiple($card->KEY,
+            'Heartsentwined\Vcard\Entity\PublicKey')
+        as $publicKey) {
+            $vcard->addPublicKey($publicKey);
         }
 
         return $this;
@@ -976,13 +928,10 @@ class Importer
         if ((string) $card->FBURL === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($freebusySrc = $card->FBURL)
-            && count($freebusySrc)) {
-            foreach ($this->importMultiple($freebusySrc,
-                'Heartsentwined\Vcard\Entity\Freebusy')
-            as $freebusy) {
-                $vcard->addFreebusy($freebusy);
-            }
+        foreach ($this->importMultiple($card->FBURL,
+            'Heartsentwined\Vcard\Entity\Freebusy')
+        as $freebusy) {
+            $vcard->addFreebusy($freebusy);
         }
 
         return $this;
@@ -999,13 +948,10 @@ class Importer
         if ((string) $card->CALURI === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($calendarSrc = $card->CALURI)
-            && count($calendarSrc)) {
-            foreach ($this->importMultiple($calendarSrc,
-                'Heartsentwined\Vcard\Entity\Calendar')
-            as $calendar) {
-                $vcard->addCalendar($calendar);
-            }
+        foreach ($this->importMultiple($card->CALURI,
+            'Heartsentwined\Vcard\Entity\Calendar')
+        as $calendar) {
+            $vcard->addCalendar($calendar);
         }
 
         return $this;
@@ -1022,13 +968,10 @@ class Importer
         if ((string) $card->CALADRURI === '') return $this;
 
         $vcard = $this->getVcard();
-        if (($calendarRequestSrc = $card->CALADRURI)
-            && count($calendarRequestSrc)) {
-            foreach ($this->importMultiple($calendarRequestSrc,
-                'Heartsentwined\Vcard\Entity\CalendarRequest')
-            as $calendarRequest) {
-                $vcard->addCalendarRequest($calendarRequest);
-            }
+        foreach ($this->importMultiple($card->CALADRURI,
+            'Heartsentwined\Vcard\Entity\CalendarRequest')
+        as $calendarRequest) {
+            $vcard->addCalendarRequest($calendarRequest);
         }
 
         return $this;

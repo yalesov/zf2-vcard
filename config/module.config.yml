@@ -8,6 +8,7 @@ di:
         vcard-importer:
             parameters:
                 reader: Sabre\VObject\Reader
+                dateTimeParser: Heartsentwined\DateTimeParser\Parser
 doctrine:
     driver:
         vcard_driver:

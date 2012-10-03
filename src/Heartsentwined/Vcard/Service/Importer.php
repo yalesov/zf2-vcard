@@ -3,6 +3,7 @@ namespace Heartsentwined\Vcard\Service;
 
 use Doctrine\ORM\EntityManager;
 use Heartsentwined\ArgValidator\ArgValidator;
+use Heartsentwined\DateTimeParser\Parser as DateTimeParser;
 use Heartsentwined\Utf8\Utf8;
 use Heartsentwined\Vcard\Entity;
 use Heartsentwined\Vcard\Repository;
@@ -29,6 +30,24 @@ class Importer
     {
         return $this->em;
     }
+
+    /**
+     * DateTimeParser
+     *
+     * @var DateTimeParser
+     */
+    protected $dateTimeParser;
+    public function setDateTimeParser(DateTimeParser $dateTimeParser)
+    {
+        $this->dateTimeParser = $dateTimeParser;
+
+        return $this;
+    }
+    public function getDateTimeParser()
+    {
+        return $this->dateTimeParser;
+    }
+
     /**
      * vcard source string
      *

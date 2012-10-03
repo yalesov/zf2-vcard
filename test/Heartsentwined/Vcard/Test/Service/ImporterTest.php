@@ -1,6 +1,7 @@
 <?php
 namespace Heartsentwined\Vcard\Test\Service;
 
+use Heartsentwined\DateTimeParser\Parser as DateTimeParser;
 use Heartsentwined\Vcard\Entity;
 use Heartsentwined\Vcard\Repository;
 use Heartsentwined\Vcard\Service\Importer;
@@ -18,7 +19,9 @@ class ImporterTest extends DoctrineTestcase
 
         $this->importer = $this->sm->get('vcard-importer')
             ->setEm($this->em)
-            ->setReader($this->sm->get('Sabre\VObject\Reader'));
+            ->setReader($this->sm->get('Sabre\VObject\Reader'))
+            ->setDateTimeParser(
+                $this->sm->get('Heartsentwined\DateTimeParser\Parser'));
     }
 
     public function tearDown()

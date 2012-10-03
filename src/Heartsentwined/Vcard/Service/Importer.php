@@ -305,7 +305,8 @@ class Importer
         $em             = $this->getEm();
         $vcard          = $this->getVcard();
 
-        $entityName     = end(explode('\\', $entityClass));
+        $entityArray    = explode('\\', $entityClass);
+        $entityName     = end($entityArray);
         $entityRepo     = $em->getRepository($entityClass);
         $typeClass      = "{$entityClass}Type";
         $typeRepo       = $em->getRepository($typeClass);
@@ -355,7 +356,8 @@ class Importer
         $em             = $this->getEm();
         $vcard          = $this->getVcard();
         $dateTimeParser = $this->getDateTimeParser();
-        $entityName     = end(explode('\\', $entityClass));
+        $entityArray    = explode('\\', $entityClass);
+        $entityName     = end($entityArray);
 
         //get first instance
         foreach ($property as $property) { break; }

@@ -823,7 +823,17 @@ class Importer
      */
     public function importRelation()
     {
-        // not yet implemented
+        $card = $this->getCard();
+        if ((string) $card->RELATED === '') return $this;
+
+        $vcard = $this->getVcard();
+        foreach ($this->importMultipleWithType($card->RELATED,
+            'Heartsentwined\Vcard\Entity\Relation')
+        as $relation) {
+            $vcard->addRelation($relation);
+        }
+
+        return $this;
     }
 
     /**

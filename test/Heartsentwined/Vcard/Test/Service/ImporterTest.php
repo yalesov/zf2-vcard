@@ -2216,7 +2216,66 @@ STR
      */
     public function testImportRelation()
     {
-        $this->fail('not yet implemented');
+        // standard entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+RELATED;TYPE=foo:foo
+RELATED;TYPE=bar:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addRelation'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->exactly(2))
+            ->method('addRelation');
+
+        $this->importer->importRelation();
+
+        // empty entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+RELATED:
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addRelation'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->never())
+            ->method('addRelation');
+
+        $this->importer->importRelation();
+
+        // no entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('addRelation'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->never())
+            ->method('addRelation');
+
+        $this->importer->importRelation();
     }
 
     /**

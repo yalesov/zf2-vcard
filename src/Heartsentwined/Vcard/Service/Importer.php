@@ -283,17 +283,17 @@ class Importer
     {
         ArgValidator::assertClass($entityClass);
 
-        $em         = $this->getEm();
-        $vcard      = $this->getVcard();
+        $em             = $this->getEm();
+        $vcard          = $this->getVcard();
 
-        $entityName = end(explode('\\', $entityClass));
-        $entityRepo = $em->getRepository($entityClass);
-        $typeClass  = "{$entityClass}Type";
-        $typeRepo   = $em->getRepository($typeClass);
-        $typeSetter = "add{$entityName}Type";
-        $typeMap    = array();
+        $entityName     = end(explode('\\', $entityClass));
+        $entityRepo     = $em->getRepository($entityClass);
+        $typeClass      = "{$entityClass}Type";
+        $typeRepo       = $em->getRepository($typeClass);
+        $typeSetter     = "add{$entityName}Type";
+        static $typeMap = array();
 
-        $entities   = array();
+        $entities       = array();
         foreach ($property as $eachProperty) {
             $entity = new $entityClass;
             $em->persist($entity);

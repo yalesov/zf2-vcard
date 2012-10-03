@@ -993,7 +993,38 @@ class Importer
      */
     public function importTag()
     {
-        // not yet implemented
+        $card = $this->getCard();
+        if ((string) $card->CATEGORIES === '') return $this;
+
+        $em    = $this->getEm();
+        $vcard = $this->getVcard();
+        $tagValueRepo =
+            $em->getRepository('Heartsentwined\Vcard\Entity\TagValue');
+        static $tagValueMap = array();
+
+        foreach ($card->CATEGORIES as $tagSrc) {
+            $tag = new Entity\Tag;
+            $em->persist($tag);
+            $vcard->addTag($tag);
+            $tag->setParam($this->importParam($tagSrc));
+
+            foreach (explode(',', $tagSrc) as $valueSrc) {
+                if ($valueSrc === '') continue;
+
+                if (isset($tagValueMap[$valueSrc])) {
+                    $tagValue = $tagValueMap[$valueSrc];
+                } elseif (!$tagValue = $tagValueRepo
+                    ->findOneBy(array('value' => $valueSrc))) {
+                    $tagValue = new Entity\TagValue;
+                    $em->persist($tagValue);
+                    $tagValue->setValue((string) $valueSrc);
+                    $tagValueMap[$valueSrc] = $tagValue;
+                }
+                $tag->addValue($tagValue);
+            }
+        }
+
+        return $this;
     }
 
     /**

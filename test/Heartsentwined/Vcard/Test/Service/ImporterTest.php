@@ -2703,7 +2703,147 @@ STR
      */
     public function testImportTag()
     {
-        $this->fail('not yet implemented');
+        // standard entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+CATEGORIES:foo
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importTag();
+        $this->em->flush();
+        $tags = $vcard->getTags();
+        $this->assertCount(1, $tags);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Tag', $tags[0]);
+        $values = $tags[0]->getValues();
+        $this->assertCount(1, $values);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\TagValue', $values[0]);
+        $this->assertSame('foo', $values[0]->getValue());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Tag')
+            ->findAll());
+        $this->assertCount(1, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\TagValue')
+            ->findAll());
+
+        // comma-separated values
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+CATEGORIES:foo,bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importTag();
+        $this->em->flush();
+        $tags = $vcard->getTags();
+        $this->assertCount(1, $tags);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Tag', $tags[0]);
+        $values = $tags[0]->getValues();
+        $this->assertCount(2, $values);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\TagValue', $values[0]);
+        $this->assertSame('foo', $values[0]->getValue());
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\TagValue', $values[1]);
+        $this->assertSame('bar', $values[1]->getValue());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Tag')
+            ->findAll());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\TagValue')
+            ->findAll());
+
+        // multiple entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+CATEGORIES:foo
+CATEGORIES:bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importTag();
+        $this->em->flush();
+        $tags = $vcard->getTags();
+        $this->assertCount(2, $tags);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Tag', $tags[0]);
+        $values = $tags[0]->getValues();
+        $this->assertCount(1, $values);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\TagValue', $values[0]);
+        $this->assertSame('foo', $values[0]->getValue());
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\Tag', $tags[1]);
+        $values = $tags[1]->getValues();
+        $this->assertCount(1, $values);
+        $this->assertInstanceOf(
+            'Heartsentwined\Vcard\Entity\TagValue', $values[0]);
+        $this->assertSame('bar', $values[0]->getValue());
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Tag')
+            ->findAll());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\TagValue')
+            ->findAll());
+
+        // empty entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+CATEGORIES:
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importTag();
+        $this->em->flush();
+        $tags = $vcard->getTags();
+        $this->assertCount(0, $tags);
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Tag')
+            ->findAll());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\TagValue')
+            ->findAll());
+
+        // no entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+        $vcard = new Entity\Vcard;
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard)
+            ->importTag();
+        $this->em->flush();
+        $tags = $vcard->getTags();
+        $this->assertCount(0, $tags);
+        $this->assertCount(4, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\Tag')
+            ->findAll());
+        $this->assertCount(2, $this->em
+            ->getRepository('Heartsentwined\Vcard\Entity\TagValue')
+            ->findAll());
     }
 
     /**

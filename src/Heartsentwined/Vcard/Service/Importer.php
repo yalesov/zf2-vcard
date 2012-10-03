@@ -120,7 +120,7 @@ class Importer
     /**
      * normalize vcard source for parsing
      *
-     * @param  string $vcardStr
+     * @param  string $vcardStr vcard source string
      * @return string
      */
     public function normalizeSource($vcardStr)
@@ -150,6 +150,7 @@ class Importer
     /**
      * parse vcard source into intermediate object
      *
+     * @param  string    $vcardStr vcard source string
      * @return Node|null
      */
     public function parseSource($vcardStr)

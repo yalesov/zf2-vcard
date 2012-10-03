@@ -583,7 +583,13 @@ class Importer
      */
     public function importAnniversary()
     {
-        // not yet implemented
+        $card = $this->getCard();
+        if ((string) $card->ANNIVERSARY === '') return $this;
+
+        $vcard = $this->getVcard()->setAnniversary($this->importSingleDatetime(
+            $card->ANNIVERSARY, 'Heartsentwined\Vcard\Entity\Anniversary'));
+
+        return $this;
     }
 
     /**

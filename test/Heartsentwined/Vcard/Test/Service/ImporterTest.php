@@ -1338,7 +1338,66 @@ STR
      */
     public function testImportAnniversary()
     {
-        $this->fail('not yet implemented');
+        // standard entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ANNIVERSARY:19900101
+ANNIVERSARY:19900101
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('setAnniversary'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->once())
+            ->method('setAnniversary');
+
+        $this->importer->importAnniversary();
+
+        // empty entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+ANNIVERSARY:
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('setAnniversary'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->never())
+            ->method('setAnniversary');
+
+        $this->importer->importAnniversary();
+
+        // no entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('setAnniversary'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->never())
+            ->method('setAnniversary');
+
+        $this->importer->importAnniversary();
     }
 
     /**

@@ -567,7 +567,13 @@ class Importer
      */
     public function importBirthday()
     {
-        // not yet implemented
+        $card = $this->getCard();
+        if ((string) $card->BDAY === '') return $this;
+
+        $vcard = $this->getVcard()->setBirthday($this->importSingleDatetime(
+            $card->BDAY, 'Heartsentwined\Vcard\Entity\Birthday'));
+
+        return $this;
     }
 
     /**

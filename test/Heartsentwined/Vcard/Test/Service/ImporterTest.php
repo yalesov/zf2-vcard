@@ -1271,7 +1271,66 @@ STR
      */
     public function testImportBirthday()
     {
-        $this->fail('not yet implemented');
+        // standard entries
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+BDAY:19900101
+BDAY:19900101
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('setBirthday'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->once())
+            ->method('setBirthday');
+
+        $this->importer->importBirthday();
+
+        // empty entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+BDAY:
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('setBirthday'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->never())
+            ->method('setBirthday');
+
+        $this->importer->importBirthday();
+
+        // no entry
+        $card = $this->importer->parseSource(<<<STR
+BEGIN:VCARD
+FOO:bar
+END:VCARD
+STR
+        );
+
+        $vcard = $this->getMock(
+            'Heartsentwined\Vcard\Entity\Vcard', array('setBirthday'));
+        $this->importer
+            ->setCard($card)
+            ->setVcard($vcard);
+
+        $vcard
+            ->expects($this->never())
+            ->method('setBirthday');
+
+        $this->importer->importBirthday();
     }
 
     /**

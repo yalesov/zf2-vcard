@@ -25,8 +25,9 @@
         "heartsentwined/zf2-doctrine": "1.*",
         "sabre/vobject": "2.0.*",
         "heartsentwined/utf8": "1.*",
-        "heartsentwined/date-time-parser": "1.*",
-
+        "heartsentwined/date-time-parser": "1.*"
+    },
+    "require-dev": {
         "heartsentwined/zf2-phpunit-testcase": "1.*",
         "heartsentwined/zf2-phing-task": "1.*"
     }

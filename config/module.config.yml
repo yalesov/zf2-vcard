@@ -3,9 +3,14 @@ di:
         alias:
             vcard: Heartsentwined\Vcard\Service\Vcard
             vcard-importer: Heartsentwined\Vcard\Service\Importer
+            vcard-exporter: Heartsentwined\Vcard\Service\Exporter
         vcard:
             parameters: {}
         vcard-importer:
+            parameters:
+                reader: Sabre\VObject\Reader
+                dateTimeParser: Heartsentwined\DateTimeParser\Parser
+        vcard-exporter:
             parameters:
                 reader: Sabre\VObject\Reader
                 dateTimeParser: Heartsentwined\DateTimeParser\Parser

@@ -13,6 +13,8 @@ use Heartsentwined\Vcard\Exception;
  */
 class Vcard extends EntityRepository
 {
+    const VERSION = '4.0';
+
     /**
      * generic string-based search method for Vcards
      * search for string in any of:

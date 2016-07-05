@@ -1,6 +1,6 @@
 # zf2-vcard
 
-[![Build Status](https://secure.travis-ci.org/yalesov/zf2-vcard.png)](http://travis-ci.org/yalesov/zf2-vcard)
+[![Build Status](https://travis-ci.org/yalesov/zf2-vcard.svg)](https://travis-ci.org/yalesov/zf2-vcard)
 
 Work with Vcards in a ZF2 app.
 

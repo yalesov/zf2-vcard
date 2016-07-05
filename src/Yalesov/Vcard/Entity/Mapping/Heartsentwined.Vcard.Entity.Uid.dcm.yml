@@ -1,0 +1,23 @@
+Yalesov\Vcard\Entity\Uid:
+    type: entity
+    table: he_vcard_uid
+    repositoryClass: Yalesov\Vcard\Repository\Uid
+    indexes:
+        uid_value_idx:
+            columns: [value]
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Yalesov\Vcard\Entity\Param
+        vcard:
+            targetEntity: Yalesov\Vcard\Entity\Vcard
+            mappedBy: uid

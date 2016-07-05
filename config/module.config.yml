@@ -1,26 +1,26 @@
 di:
     instance:
         alias:
-            vcard: Heartsentwined\Vcard\Service\Vcard
-            vcard-importer: Heartsentwined\Vcard\Service\Importer
-            vcard-exporter: Heartsentwined\Vcard\Service\Exporter
+            vcard: Yalesov\Vcard\Service\Vcard
+            vcard-importer: Yalesov\Vcard\Service\Importer
+            vcard-exporter: Yalesov\Vcard\Service\Exporter
         vcard:
             parameters: {}
         vcard-importer:
             parameters:
                 reader: Sabre\VObject\Reader
-                dateTimeParser: Heartsentwined\DateTimeParser\Parser
+                dateTimeParser: Yalesov\DateTimeParser\Parser
         vcard-exporter:
             parameters:
                 reader: Sabre\VObject\Reader
-                dateTimeParser: Heartsentwined\DateTimeParser\Parser
+                dateTimeParser: Yalesov\DateTimeParser\Parser
 doctrine:
     driver:
         vcard_driver:
             class: Doctrine\ORM\Mapping\Driver\YamlDriver
             cache: array
             paths:
-                - __DIR__/../src/Heartsentwined/Vcard/Entity/Mapping
+                - __DIR__/../src/Yalesov/Vcard/Entity/Mapping
         orm_default:
             drivers:
-                Heartsentwined\Vcard\Entity: vcard_driver
+                Yalesov\Vcard\Entity: vcard_driver

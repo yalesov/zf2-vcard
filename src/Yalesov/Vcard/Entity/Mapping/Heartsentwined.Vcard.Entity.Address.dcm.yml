@@ -1,0 +1,40 @@
+Yalesov\Vcard\Entity\Address:
+    type: entity
+    table: he_vcard_address
+    repositoryClass: Yalesov\Vcard\Repository\Address
+    indexes:
+        street_idx:
+            columns: [street]
+        locality_idx:
+            columns: [locality]
+        locality_idx:
+            columns: [locality]
+        postal_code_idx:
+            columns: [postalCode]
+        country_idx:
+            columns: [country]
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        street:     # merge pobox + ext into street
+            type: string
+            nullable: true
+        locality:   # e.g. city
+            type: string
+            nullable: true
+        region:
+            type: string
+            nullable: true
+        postalCode:
+            type: string
+            nullable: true
+        country:
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Yalesov\Vcard\Entity\Param

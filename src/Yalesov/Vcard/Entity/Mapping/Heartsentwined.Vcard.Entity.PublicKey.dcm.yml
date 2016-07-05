@@ -1,0 +1,17 @@
+Yalesov\Vcard\Entity\PublicKey:
+    type: entity
+    table: he_vcard_public_key
+    repositoryClass: Yalesov\Vcard\Repository\PublicKey
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: text
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Yalesov\Vcard\Entity\Param

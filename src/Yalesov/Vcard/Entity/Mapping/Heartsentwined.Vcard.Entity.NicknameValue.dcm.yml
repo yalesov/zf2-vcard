@@ -1,0 +1,16 @@
+Yalesov\Vcard\Entity\NicknameValue:
+    type: entity
+    table: he_vcard_nickname_value
+    repositoryClass: Yalesov\Vcard\Repository\NicknameValue
+    indexes:
+        nickname_value_value_idx:
+            columns: [value]
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: string
+            nullable: true

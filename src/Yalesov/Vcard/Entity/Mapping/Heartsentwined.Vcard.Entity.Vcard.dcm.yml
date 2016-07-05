@@ -1,0 +1,359 @@
+Yalesov\Vcard\Entity\Vcard:
+    type: entity
+    table: he_vcard_vcard
+    repositoryClass: Yalesov\Vcard\Repository\Vcard
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+
+    manyToOne:
+        kind:
+            targetEntity: Yalesov\Vcard\Entity\Kind
+            inversedBy: vcards
+
+    oneToOne:
+        gender:
+            targetEntity: Yalesov\Vcard\Entity\Gender
+            inversedBy: vcard
+            cascade: [remove]
+
+        uid:
+            targetEntity: Yalesov\Vcard\Entity\Uid
+            inversedBy: vcard
+            cascade: [remove]
+
+        birthday:
+            targetEntity: Yalesov\Vcard\Entity\Birthday
+            inversedBy: vcard
+            cascade: [remove]
+        anniversary:
+            targetEntity: Yalesov\Vcard\Entity\Anniversary
+            inversedBy: vcard
+            cascade: [remove]
+
+    # use pseudo one-to-many relation with jointable
+    # to enable Vcard to act as owning side
+    manyToMany:
+        sources:
+            targetEntity: Yalesov\Vcard\Entity\Source
+            joinTable:
+                name: he_vcard_vcards_sources
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    source_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+
+        formattedNames:
+            targetEntity: Yalesov\Vcard\Entity\FormattedName
+            joinTable:
+                name: he_vcard_vcards_formatted_names
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    formatted_name_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        names:
+            targetEntity: Yalesov\Vcard\Entity\Name
+            joinTable:
+                name: he_vcard_vcards_names
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    name_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        nicknames:
+            targetEntity: Yalesov\Vcard\Entity\Nickname
+            joinTable:
+                name: he_vcard_vcards_nicknames
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    nickname_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        photos:
+            targetEntity: Yalesov\Vcard\Entity\Photo
+            joinTable:
+                name: he_vcard_vcards_photos
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    photo_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+
+        addresses:
+            targetEntity: Yalesov\Vcard\Entity\Address
+            joinTable:
+                name: he_vcard_vcards_addresses
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    address_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        phones:
+            targetEntity: Yalesov\Vcard\Entity\Phone
+            joinTable:
+                name: he_vcard_vcards_phones
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    phone_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        emails:
+            targetEntity: Yalesov\Vcard\Entity\Email
+            joinTable:
+                name: he_vcard_vcards_emails
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    email_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        ims:
+            targetEntity: Yalesov\Vcard\Entity\Im
+            joinTable:
+                name: he_vcard_vcards_ims
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    im_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        urls:
+            targetEntity: Yalesov\Vcard\Entity\Url
+            joinTable:
+                name: he_vcard_vcards_urls
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    url_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+
+        languages:
+            targetEntity: Yalesov\Vcard\Entity\Language
+            joinTable:
+                name: he_vcard_vcards_languages
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    language_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+
+        timezones:
+            targetEntity: Yalesov\Vcard\Entity\Timezone
+            joinTable:
+                name: he_vcard_vcards_timezones
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    timezone_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        geos:
+            targetEntity: Yalesov\Vcard\Entity\Geo
+            joinTable:
+                name: he_vcard_vcards_geos
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    geo_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+
+        titles:
+            targetEntity: Yalesov\Vcard\Entity\Title
+            joinTable:
+                name: he_vcard_vcards_titles
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    title_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        roles:
+            targetEntity: Yalesov\Vcard\Entity\Role
+            joinTable:
+                name: he_vcard_vcards_roles
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    role_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        logos:
+            targetEntity: Yalesov\Vcard\Entity\Logo
+            joinTable:
+                name: he_vcard_vcards_logos
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    logo_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        orgs:
+            targetEntity: Yalesov\Vcard\Entity\Org
+            joinTable:
+                name: he_vcard_vcards_orgs
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    org_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        members:
+            targetEntity: Yalesov\Vcard\Entity\Member
+            joinTable:
+                name: he_vcard_vcards_members
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    member_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+
+        relations:
+            targetEntity: Yalesov\Vcard\Entity\Relation
+            joinTable:
+                name: he_vcard_vcards_relations
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    relation_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+
+        tags:
+            targetEntity: Yalesov\Vcard\Entity\Tag
+            joinTable:
+                name: he_vcard_vcards_tags
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    tag_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        notes:
+            targetEntity: Yalesov\Vcard\Entity\Note
+            joinTable:
+                name: he_vcard_vcards_notes
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    note_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        sounds:
+            targetEntity: Yalesov\Vcard\Entity\Sound
+            joinTable:
+                name: he_vcard_vcards_sounds
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    sound_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        publicKeys:
+            targetEntity: Yalesov\Vcard\Entity\PublicKey
+            joinTable:
+                name: he_vcard_vcards_public_keys
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    public_key_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+
+        freebusies:
+            targetEntity: Yalesov\Vcard\Entity\Freebusy
+            joinTable:
+                name: he_vcard_vcards_freebusies
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    freebusy_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        calendars:
+            targetEntity: Yalesov\Vcard\Entity\Calendar
+            joinTable:
+                name: he_vcard_vcards_calendars
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    calendar_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]
+        calendarRequests:
+            targetEntity: Yalesov\Vcard\Entity\CalendarRequest
+            joinTable:
+                name: he_vcard_vcards_calendar_requests
+                joinColumns:
+                    vcard_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    calendar_request_id:
+                        referencedColumnName: id
+                        unique: true
+            cascade: [remove]

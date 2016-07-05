@@ -1,0 +1,23 @@
+Yalesov\Vcard\Entity\ImProtocol:
+    type: entity
+    table: he_vcard_im_protocol
+    repositoryClass: Yalesov\Vcard\Repository\ImProtocol
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            # (full lowercase for all protocols)
+            # "standard":
+            # aim, gadugadu, groupwise, icq, jabber, msn, skype, twitter, yahoo
+            # "others":
+            # wangwang, qq, etc
+            type: string
+            nullable: true
+
+    oneToMany:
+        ims:
+            targetEntity: Yalesov\Vcard\Entity\Im
+            mappedBy: protocol

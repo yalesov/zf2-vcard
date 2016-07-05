@@ -1,0 +1,22 @@
+Yalesov\Vcard\Entity\KindValue:
+    type: entity
+    table: he_vcard_kind_value
+    repositoryClass: Yalesov\Vcard\Repository\KindValue
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            # individual
+            # group
+            # org
+            # location
+            # x-name, iana-token
+            type: string
+
+    oneToMany:
+        kinds:
+            targetEntity: Yalesov\Vcard\Entity\Kind
+            mappedBy: value

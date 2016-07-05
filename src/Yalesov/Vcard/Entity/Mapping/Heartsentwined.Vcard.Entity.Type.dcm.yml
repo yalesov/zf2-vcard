@@ -1,0 +1,15 @@
+Yalesov\Vcard\Entity\Type:
+    type: entity
+    table: he_vcard_type
+    repositoryClass: Yalesov\Vcard\Repository\Type
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            # 'work'
+            # 'home'
+            # iana-token / x-name
+            type: string

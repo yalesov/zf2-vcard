@@ -1,0 +1,20 @@
+Yalesov\Vcard\Entity\Title:
+    type: entity
+    table: he_vcard_title
+    repositoryClass: Yalesov\Vcard\Repository\Title
+    indexes:
+        title_value_idx:
+            columns: [value]
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Yalesov\Vcard\Entity\Param

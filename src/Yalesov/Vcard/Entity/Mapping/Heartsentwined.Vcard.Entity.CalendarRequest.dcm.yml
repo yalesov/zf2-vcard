@@ -1,0 +1,20 @@
+Yalesov\Vcard\Entity\CalendarRequest:
+    type: entity
+    table: he_vcard_calendar_request
+    repositoryClass: Yalesov\Vcard\Repository\CalendarRequest
+    indexes:
+        calendar_request_value_idx:
+            columns: [value]
+    fields:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+        value:
+            type: string
+            nullable: true
+
+    oneToOne:
+        param:
+            targetEntity: Yalesov\Vcard\Entity\Param

@@ -10,9 +10,9 @@ Work with Vcards in a ZF2 app.
 
 ```json
 {
-    "require": {
-        "yalesov/zf2-vcard": "dev-master"
-    }
+  "require": {
+    "yalesov/zf2-vcard": "dev-master"
+  }
 }
 ```
 

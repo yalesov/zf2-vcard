@@ -1,12 +1,12 @@
 Yalesov\Vcard\Entity\Meta:
-    type: entity
-    table: he_vcard_meta
-    repositoryClass: Yalesov\Vcard\Repository\Meta
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        status:
-            type: string
+  type: entity
+  table: he_vcard_meta
+  repositoryClass: Yalesov\Vcard\Repository\Meta
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    status:
+      type: string

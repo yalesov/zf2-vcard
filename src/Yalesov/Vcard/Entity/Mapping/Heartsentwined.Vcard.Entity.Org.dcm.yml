@@ -1,20 +1,20 @@
 Yalesov\Vcard\Entity\Org:
-    type: entity
-    table: he_vcard_org
-    repositoryClass: Yalesov\Vcard\Repository\Org
-    indexes:
-        org_value_idx:
-            columns: [value]
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: string
-            nullable: true
+  type: entity
+  table: he_vcard_org
+  repositoryClass: Yalesov\Vcard\Repository\Org
+  indexes:
+    org_value_idx:
+      columns: [value]
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: string
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param

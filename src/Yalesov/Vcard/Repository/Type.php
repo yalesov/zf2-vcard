@@ -12,6 +12,6 @@ use Doctrine\ORM\EntityRepository;
  */
 class Type extends EntityRepository
 {
-    const WORK = 'work';
-    const HOME = 'home';
+  const WORK = 'work';
+  const HOME = 'home';
 }

@@ -1,27 +1,27 @@
 Yalesov\Vcard\Entity\Nickname:
-    type: entity
-    table: he_vcard_nickname
-    repositoryClass: Yalesov\Vcard\Repository\Nickname
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
+  type: entity
+  table: he_vcard_nickname
+  repositoryClass: Yalesov\Vcard\Repository\Nickname
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-    manyToMany:
-        values:
-            targetEntity: Yalesov\Vcard\Entity\NicknameValue
-            joinTable:
-                name: he_vcard_nicknames_nickname_values
-                joinColumns:
-                    nickname_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    nickname_value_id:
-                        referencedColumnName: id
-                        unique: true
-            cascade: [remove]
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+  manyToMany:
+    values:
+      targetEntity: Yalesov\Vcard\Entity\NicknameValue
+      joinTable:
+        name: he_vcard_nicknames_nickname_values
+        joinColumns:
+          nickname_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          nickname_value_id:
+            referencedColumnName: id
+            unique: true
+      cascade: [remove]

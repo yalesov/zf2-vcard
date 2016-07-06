@@ -1,24 +1,24 @@
 Yalesov\Vcard\Entity\Gender:
-    type: entity
-    table: he_vcard_gender
-    repositoryClass: Yalesov\Vcard\Repository\Gender
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        comment:
-            type: string
-            nullable: true
+  type: entity
+  table: he_vcard_gender
+  repositoryClass: Yalesov\Vcard\Repository\Gender
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    comment:
+      type: string
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-        vcard:
-            targetEntity: Yalesov\Vcard\Entity\Vcard
-            mappedBy: gender
-    manyToOne:
-        value:
-            targetEntity: Yalesov\Vcard\Entity\GenderValue
-            inversedBy: genders
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+    vcard:
+      targetEntity: Yalesov\Vcard\Entity\Vcard
+      mappedBy: gender
+  manyToOne:
+    value:
+      targetEntity: Yalesov\Vcard\Entity\GenderValue
+      inversedBy: genders

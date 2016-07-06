@@ -1,17 +1,17 @@
 Yalesov\Vcard\Entity\Sound:
-    type: entity
-    table: he_vcard_sound
-    repositoryClass: Yalesov\Vcard\Repository\Sound
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: text
-            nullable: true
+  type: entity
+  table: he_vcard_sound
+  repositoryClass: Yalesov\Vcard\Repository\Sound
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: text
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param

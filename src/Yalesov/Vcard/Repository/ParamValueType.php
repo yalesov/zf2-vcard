@@ -12,16 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class ParamValueType extends EntityRepository
 {
-    const TEXT          = 'text';
-    const URI           = 'uri';
-    const DATE          = 'date';
-    const TIME          = 'time';
-    const DATETIME      = 'datetime';
-    const DATEANDORTIME = 'date-and-or-time';
-    const TIMESTAMP     = 'timestamp';
-    const BOOLEAN       = 'boolean';
-    const INTEGER       = 'integer';
-    const FLOAT         = 'float';
-    const UTCOFFSET     = 'utf-offset';
-    const LANGUAGETAG   = 'language-tag';
+  const TEXT      = 'text';
+  const URI       = 'uri';
+  const DATE      = 'date';
+  const TIME      = 'time';
+  const DATETIME    = 'datetime';
+  const DATEANDORTIME = 'date-and-or-time';
+  const TIMESTAMP   = 'timestamp';
+  const BOOLEAN     = 'boolean';
+  const INTEGER     = 'integer';
+  const FLOAT     = 'float';
+  const UTCOFFSET   = 'utf-offset';
+  const LANGUAGETAG   = 'language-tag';
 }

@@ -1,17 +1,17 @@
 Yalesov\Vcard\Entity\Logo:
-    type: entity
-    table: he_vcard_logo
-    repositoryClass: Yalesov\Vcard\Repository\Logo
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: text
-            nullable: true
+  type: entity
+  table: he_vcard_logo
+  repositoryClass: Yalesov\Vcard\Repository\Logo
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: text
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param

@@ -1,17 +1,17 @@
 Yalesov\Vcard\Entity\Freebusy:
-    type: entity
-    table: he_vcard_freebusy
-    repositoryClass: Yalesov\Vcard\Repository\Freebusy
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: string
-            nullable: true
+  type: entity
+  table: he_vcard_freebusy
+  repositoryClass: Yalesov\Vcard\Repository\Freebusy
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: string
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param

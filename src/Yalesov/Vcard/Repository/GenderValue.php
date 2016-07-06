@@ -12,16 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class GenderValue extends EntityRepository
 {
-    const M                 = 'M';
-        const MALE          = 'M';
-    const F                 = 'F';
-        const FEMALE        = 'F';
-    const O                 = 'O';
-        const OTHER         = 'O';
-    const N                 = 'N';
-        const NONE          = 'N';
-        const NA            = 'N';
-        const NOTAPPLICABLE = 'N';
-    const U                 = 'U';
-        const UNKNOWN       = 'U';
+  const M         = 'M';
+    const MALE      = 'M';
+  const F         = 'F';
+    const FEMALE    = 'F';
+  const O         = 'O';
+    const OTHER     = 'O';
+  const N         = 'N';
+    const NONE      = 'N';
+    const NA      = 'N';
+    const NOTAPPLICABLE = 'N';
+  const U         = 'U';
+    const UNKNOWN     = 'U';
 }

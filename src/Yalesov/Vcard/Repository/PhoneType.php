@@ -12,13 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class PhoneType extends EntityRepository
 {
-    const DEF       = 'voice';
+  const DEF     = 'voice';
 
-    const TEXT      = 'text';
-    const VOICE     = 'voice';
-    const FAX       = 'fax';
-    const CELL      = 'cell';
-    const VIDEO     = 'video';
-    const PAGER     = 'pager';
-    const TEXTPHONE = 'textphone';
+  const TEXT    = 'text';
+  const VOICE   = 'voice';
+  const FAX     = 'fax';
+  const CELL    = 'cell';
+  const VIDEO   = 'video';
+  const PAGER   = 'pager';
+  const TEXTPHONE = 'textphone';
 }

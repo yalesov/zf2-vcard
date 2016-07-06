@@ -1,22 +1,22 @@
 Yalesov\Vcard\Entity\Kind:
-    type: entity
-    table: he_vcard_kind
-    repositoryClass: Yalesov\Vcard\Repository\Kind
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
+  type: entity
+  table: he_vcard_kind
+  repositoryClass: Yalesov\Vcard\Repository\Kind
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-    oneToMany:
-        vcards:
-            targetEntity: Yalesov\Vcard\Entity\Vcard
-            mappedBy: kind
-    manyToOne:
-        value:
-            targetEntity: Yalesov\Vcard\Entity\KindValue
-            inversedBy: kinds
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+  oneToMany:
+    vcards:
+      targetEntity: Yalesov\Vcard\Entity\Vcard
+      mappedBy: kind
+  manyToOne:
+    value:
+      targetEntity: Yalesov\Vcard\Entity\KindValue
+      inversedBy: kinds

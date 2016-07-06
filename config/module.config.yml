@@ -1,26 +1,26 @@
 di:
-    instance:
-        alias:
-            vcard: Yalesov\Vcard\Service\Vcard
-            vcard-importer: Yalesov\Vcard\Service\Importer
-            vcard-exporter: Yalesov\Vcard\Service\Exporter
-        vcard:
-            parameters: {}
-        vcard-importer:
-            parameters:
-                reader: Sabre\VObject\Reader
-                dateTimeParser: Yalesov\DateTimeParser\Parser
-        vcard-exporter:
-            parameters:
-                reader: Sabre\VObject\Reader
-                dateTimeParser: Yalesov\DateTimeParser\Parser
+  instance:
+    alias:
+      vcard: Yalesov\Vcard\Service\Vcard
+      vcard-importer: Yalesov\Vcard\Service\Importer
+      vcard-exporter: Yalesov\Vcard\Service\Exporter
+    vcard:
+      parameters: {}
+    vcard-importer:
+      parameters:
+        reader: Sabre\VObject\Reader
+        dateTimeParser: Yalesov\DateTimeParser\Parser
+    vcard-exporter:
+      parameters:
+        reader: Sabre\VObject\Reader
+        dateTimeParser: Yalesov\DateTimeParser\Parser
 doctrine:
-    driver:
-        vcard_driver:
-            class: Doctrine\ORM\Mapping\Driver\YamlDriver
-            cache: array
-            paths:
-                - __DIR__/../src/Yalesov/Vcard/Entity/Mapping
-        orm_default:
-            drivers:
-                Yalesov\Vcard\Entity: vcard_driver
+  driver:
+    vcard_driver:
+      class: Doctrine\ORM\Mapping\Driver\YamlDriver
+      cache: array
+      paths:
+        - __DIR__/../src/Yalesov/Vcard/Entity/Mapping
+    orm_default:
+      drivers:
+        Yalesov\Vcard\Entity: vcard_driver

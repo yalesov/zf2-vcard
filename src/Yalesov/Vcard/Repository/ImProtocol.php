@@ -12,13 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ImProtocol extends EntityRepository
 {
-    const AIM       = 'aim';
-    const GADUGADU  = 'gadugadu';
-    const GROUPWISE = 'groupwise';
-    const ICQ       = 'icq';
-    const JABBER    = 'jabber';
-    const MSN       = 'msn';
-    const SKYPE     = 'skype';
-    const TWITTER   = 'twitter';
-    const YAHOO     = 'yahoo';
+  const AIM     = 'aim';
+  const GADUGADU  = 'gadugadu';
+  const GROUPWISE = 'groupwise';
+  const ICQ     = 'icq';
+  const JABBER  = 'jabber';
+  const MSN     = 'msn';
+  const SKYPE   = 'skype';
+  const TWITTER   = 'twitter';
+  const YAHOO   = 'yahoo';
 }

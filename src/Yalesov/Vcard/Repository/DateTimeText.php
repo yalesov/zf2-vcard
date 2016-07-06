@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class DateTimeText extends EntityRepository
 {
-    const FULL      = 'full';
-    const PARTIAL   = 'partial';
-    const TEXT      = 'text';
+  const FULL    = 'full';
+  const PARTIAL   = 'partial';
+  const TEXT    = 'text';
 }

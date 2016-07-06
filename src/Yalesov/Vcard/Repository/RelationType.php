@@ -12,25 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class RelationType extends EntityRepository
 {
-    const CONTACT       = 'contact';
-    const ACQUAINTANCE  = 'acquaintance';
-    const FRIEND        = 'friend';
-    const MET           = 'met';
-    const COWORKER      = 'co-worker';
-    const COLLEAGUE     = 'colleague';
-    const CORESIDENT    = 'co-resident';
-    const NEIGHBOR      = 'neighbor';
-    const NEIGHBOUR     = 'neighbor';   // alias
-    const CHILD         = 'child';
-    const PARENT        = 'parent';
-    const SIBLING       = 'sibling';
-    const SPOUSE        = 'spouse';
-    const KIN           = 'kin';
-    const MUSE          = 'muse';
-    const CRUSH         = 'crush';
-    const DATE          = 'date';
-    const SWEETHEART    = 'sweetheart';
-    const ME            = 'me';
-    const AGENT         = 'agent';
-    const EMERGENCY     = 'emergency';
+  const CONTACT     = 'contact';
+  const ACQUAINTANCE  = 'acquaintance';
+  const FRIEND    = 'friend';
+  const MET       = 'met';
+  const COWORKER    = 'co-worker';
+  const COLLEAGUE   = 'colleague';
+  const CORESIDENT  = 'co-resident';
+  const NEIGHBOR    = 'neighbor';
+  const NEIGHBOUR   = 'neighbor';   // alias
+  const CHILD     = 'child';
+  const PARENT    = 'parent';
+  const SIBLING     = 'sibling';
+  const SPOUSE    = 'spouse';
+  const KIN       = 'kin';
+  const MUSE      = 'muse';
+  const CRUSH     = 'crush';
+  const DATE      = 'date';
+  const SWEETHEART  = 'sweetheart';
+  const ME      = 'me';
+  const AGENT     = 'agent';
+  const EMERGENCY   = 'emergency';
 }

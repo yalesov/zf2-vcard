@@ -1,22 +1,22 @@
 Yalesov\Vcard\Entity\GenderValue:
-    type: entity
-    table: he_vcard_gender_value
-    repositoryClass: Yalesov\Vcard\Repository\GenderValue
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            # M male
-            # F female
-            # O other
-            # N none / not applicable
-            # U unknown
-            type: string
+  type: entity
+  table: he_vcard_gender_value
+  repositoryClass: Yalesov\Vcard\Repository\GenderValue
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      # M male
+      # F female
+      # O other
+      # N none / not applicable
+      # U unknown
+      type: string
 
-    oneToMany:
-        genders:
-            targetEntity: Yalesov\Vcard\Entity\Gender
-            mappedBy: value
+  oneToMany:
+    genders:
+      targetEntity: Yalesov\Vcard\Entity\Gender
+      mappedBy: value

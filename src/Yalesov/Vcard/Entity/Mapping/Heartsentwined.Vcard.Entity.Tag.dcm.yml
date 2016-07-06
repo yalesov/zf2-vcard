@@ -1,17 +1,17 @@
 Yalesov\Vcard\Entity\Tag:
-    type: entity
-    table: he_vcard_tag
-    repositoryClass: Yalesov\Vcard\Repository\Tag
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
+  type: entity
+  table: he_vcard_tag
+  repositoryClass: Yalesov\Vcard\Repository\Tag
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-    manyToMany:
-        values:
-            targetEntity: Yalesov\Vcard\Entity\TagValue
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+  manyToMany:
+    values:
+      targetEntity: Yalesov\Vcard\Entity\TagValue

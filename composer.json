@@ -1,43 +1,43 @@
 {
-    "name": "yalesov/zf2-vcard",
-    "description": "Work with Vcards in a ZF2 app.",
-    "keywords": ["vcard", "zf2", "zendframework"],
-    "authors": [
-        {
-            "name": "Yulij Andreevich Lesov",
-            "email": "yalesov@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">=5.3.3",
-        "yalesov/yaml": "2.*",
-        "zendframework/zendframework": "2.*",
-        "yalesov/arg-validator": "2.*",
-        "yalesov/zf2-doctrine": "2.*",
-        "sabre/vobject": "2.0.*",
-        "yalesov/utf8": "2.*",
-        "yalesov/date-time-parser": "2.*"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "*",
-        "yalesov/zf2-phpunit-testcase": "2.*",
-        "yalesov/zf2-phing-task": "2.*"
-    },
-    "autoload": {
-        "psr-0": {
-            "Yalesov\\Vcard": "src/"
-        }
-    },
-    "license": "ISC",
-    "homepage": "https://github.com/yalesov/zf2-vcard",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/yalesov/zf2-vcard"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/yalesov/zf2-vcard/issues"
+  "name": "yalesov/zf2-vcard",
+  "description": "Work with Vcards in a ZF2 app.",
+  "keywords": ["vcard", "zf2", "zendframework"],
+  "authors": [
+    {
+      "name": "Yulij Andreevich Lesov",
+      "email": "yalesov@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.3.3",
+    "yalesov/yaml": "2.*",
+    "zendframework/zendframework": "2.*",
+    "yalesov/arg-validator": "2.*",
+    "yalesov/zf2-doctrine": "2.*",
+    "sabre/vobject": "2.0.*",
+    "yalesov/utf8": "2.*",
+    "yalesov/date-time-parser": "2.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "yalesov/zf2-phpunit-testcase": "2.*",
+    "yalesov/zf2-phing-task": "2.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Yalesov\\Vcard": "src/"
+    }
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/yalesov/zf2-vcard",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/yalesov/zf2-vcard"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/yalesov/zf2-vcard/issues"
+  }
 }

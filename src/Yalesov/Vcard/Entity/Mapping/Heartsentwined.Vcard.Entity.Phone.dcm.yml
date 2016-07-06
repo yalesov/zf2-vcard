@@ -1,23 +1,23 @@
 Yalesov\Vcard\Entity\Phone:
-    type: entity
-    table: he_vcard_phone
-    repositoryClass: Yalesov\Vcard\Repository\Phone
-    indexes:
-        phone_value_idx:
-            columns: [value]
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: string
-            nullable: true
+  type: entity
+  table: he_vcard_phone
+  repositoryClass: Yalesov\Vcard\Repository\Phone
+  indexes:
+    phone_value_idx:
+      columns: [value]
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: string
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-    manyToMany:
-        phoneTypes: # default 'voice'
-            targetEntity: Yalesov\Vcard\Entity\PhoneType
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+  manyToMany:
+    phoneTypes: # default 'voice'
+      targetEntity: Yalesov\Vcard\Entity\PhoneType

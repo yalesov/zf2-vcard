@@ -1,19 +1,19 @@
 Yalesov\Vcard\Entity\Anniversary:
-    type: entity
-    table: he_vcard_anniversary
-    repositoryClass: Yalesov\Vcard\Repository\Anniversary
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
+  type: entity
+  table: he_vcard_anniversary
+  repositoryClass: Yalesov\Vcard\Repository\Anniversary
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-        value:
-            targetEntity: Yalesov\Vcard\Entity\DateTimeText
-        vcard:
-            targetEntity: Yalesov\Vcard\Entity\Vcard
-            mappedBy: anniversary
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+    value:
+      targetEntity: Yalesov\Vcard\Entity\DateTimeText
+    vcard:
+      targetEntity: Yalesov\Vcard\Entity\Vcard
+      mappedBy: anniversary

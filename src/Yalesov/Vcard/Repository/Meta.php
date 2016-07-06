@@ -12,5 +12,5 @@ use Doctrine\ORM\EntityRepository;
  */
 class Meta extends EntityRepository
 {
-    const INSTALLED = 'installed';
+  const INSTALLED = 'installed';
 }

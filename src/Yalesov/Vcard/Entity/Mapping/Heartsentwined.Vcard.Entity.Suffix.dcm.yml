@@ -1,16 +1,16 @@
 Yalesov\Vcard\Entity\Suffix:
-    type: entity
-    table: he_vcard_suffix
-    repositoryClass: Yalesov\Vcard\Repository\Suffix
-    indexes:
-        suffix_value_idx:
-            columns: [value]
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: string
-            nullable: true
+  type: entity
+  table: he_vcard_suffix
+  repositoryClass: Yalesov\Vcard\Repository\Suffix
+  indexes:
+    suffix_value_idx:
+      columns: [value]
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: string
+      nullable: true

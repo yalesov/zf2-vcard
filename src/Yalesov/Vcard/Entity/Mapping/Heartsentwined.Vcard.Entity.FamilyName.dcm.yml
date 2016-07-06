@@ -1,16 +1,16 @@
 Yalesov\Vcard\Entity\FamilyName:
-    type: entity
-    table: he_vcard_family_name
-    repositoryClass: Yalesov\Vcard\Repository\FamilyName
-    indexes:
-        family_name_value_idx:
-            columns: [value]
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: string
-            nullable: true
+  type: entity
+  table: he_vcard_family_name
+  repositoryClass: Yalesov\Vcard\Repository\FamilyName
+  indexes:
+    family_name_value_idx:
+      columns: [value]
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: string
+      nullable: true

@@ -1,43 +1,43 @@
 Yalesov\Vcard\Entity\Param:
-    type: entity
-    table: he_vcard_param
-    repositoryClass: Yalesov\Vcard\Repository\Param
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
+  type: entity
+  table: he_vcard_param
+  repositoryClass: Yalesov\Vcard\Repository\Param
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
 
-        altId:
-            type: string
-            nullable: true
-        geo:
-            type: string
-            nullable: true
-        label:
-            type: string
-            nullable: true
-        language:
-            type: string
-            nullable: true
-        mediaType:
-            type: string
-            nullable: true
-        pref:
-            type: integer
-            nullable: true
-        sortAs:
-            type: string
-            nullable: true
-        timezone:
-            type: string
-            nullable: true
+    altId:
+      type: string
+      nullable: true
+    geo:
+      type: string
+      nullable: true
+    label:
+      type: string
+      nullable: true
+    language:
+      type: string
+      nullable: true
+    mediaType:
+      type: string
+      nullable: true
+    pref:
+      type: integer
+      nullable: true
+    sortAs:
+      type: string
+      nullable: true
+    timezone:
+      type: string
+      nullable: true
 
-    manyToOne:
-        valueType:
-            targetEntity: Yalesov\Vcard\Entity\ParamValueType
-            inversedBy: params
-    manyToMany:
-        types:
-            targetEntity: Yalesov\Vcard\Entity\Type
+  manyToOne:
+    valueType:
+      targetEntity: Yalesov\Vcard\Entity\ParamValueType
+      inversedBy: params
+  manyToMany:
+    types:
+      targetEntity: Yalesov\Vcard\Entity\Type

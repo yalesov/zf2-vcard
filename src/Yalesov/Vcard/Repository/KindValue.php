@@ -12,11 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class KindValue extends EntityRepository
 {
-    const DEF           = 'individual';
+  const DEF       = 'individual';
 
-    const INDIVIDUAL    = 'individual';
-    const GROUP         = 'group';
-    const ORG           = 'org';
-    const ORGANIZATION  = 'org'; // alias
-    const LOCATION      = 'location';
+  const INDIVIDUAL  = 'individual';
+  const GROUP     = 'group';
+  const ORG       = 'org';
+  const ORGANIZATION  = 'org'; // alias
+  const LOCATION    = 'location';
 }

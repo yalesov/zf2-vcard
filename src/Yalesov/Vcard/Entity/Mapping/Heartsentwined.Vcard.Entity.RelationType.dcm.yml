@@ -1,17 +1,17 @@
 Yalesov\Vcard\Entity\RelationType:
-    type: entity
-    table: he_vcard_relation_type
-    repositoryClass: Yalesov\Vcard\Repository\RelationType
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            # contact, acquaintance, friend, met,
-            # co-worker, colleague, co-resident, neighbor,
-            # child, parent, sibling, spouse, kin,
-            # muse, crush, date, sweetheart,
-            # me, agent, emergency
-            type: string
+  type: entity
+  table: he_vcard_relation_type
+  repositoryClass: Yalesov\Vcard\Repository\RelationType
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      # contact, acquaintance, friend, met,
+      # co-worker, colleague, co-resident, neighbor,
+      # child, parent, sibling, spouse, kin,
+      # muse, crush, date, sweetheart,
+      # me, agent, emergency
+      type: string

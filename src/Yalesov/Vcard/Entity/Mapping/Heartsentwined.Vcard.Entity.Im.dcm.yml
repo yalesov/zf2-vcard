@@ -1,27 +1,27 @@
 Yalesov\Vcard\Entity\Im:
-    type: entity
-    table: he_vcard_im
-    repositoryClass: Yalesov\Vcard\Repository\Im
-    indexes:
-        im_value_idx:
-            columns: [value]
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: string
-            nullable: true
-        isUri:
-            type: boolean
-            nullable: true
+  type: entity
+  table: he_vcard_im
+  repositoryClass: Yalesov\Vcard\Repository\Im
+  indexes:
+    im_value_idx:
+      columns: [value]
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: string
+      nullable: true
+    isUri:
+      type: boolean
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-    manyToOne:
-        protocol:
-            targetEntity: Yalesov\Vcard\Entity\ImProtocol
-            inversedBy: ims
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+  manyToOne:
+    protocol:
+      targetEntity: Yalesov\Vcard\Entity\ImProtocol
+      inversedBy: ims

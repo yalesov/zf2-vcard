@@ -1,19 +1,19 @@
 Yalesov\Vcard\Entity\Birthday:
-    type: entity
-    table: he_vcard_birthday
-    repositoryClass: Yalesov\Vcard\Repository\Birthday
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
+  type: entity
+  table: he_vcard_birthday
+  repositoryClass: Yalesov\Vcard\Repository\Birthday
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-        value:
-            targetEntity: Yalesov\Vcard\Entity\DateTimeText
-        vcard:
-            targetEntity: Yalesov\Vcard\Entity\Vcard
-            mappedBy: birthday
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+    value:
+      targetEntity: Yalesov\Vcard\Entity\DateTimeText
+    vcard:
+      targetEntity: Yalesov\Vcard\Entity\Vcard
+      mappedBy: birthday

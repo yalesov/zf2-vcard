@@ -1,17 +1,17 @@
 Yalesov\Vcard\Entity\Language:
-    type: entity
-    table: he_vcard_language
-    repositoryClass: Yalesov\Vcard\Repository\Language
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: string
-            nullable: true
+  type: entity
+  table: he_vcard_language
+  repositoryClass: Yalesov\Vcard\Repository\Language
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: string
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param

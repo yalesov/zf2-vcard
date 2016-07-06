@@ -1,20 +1,20 @@
 Yalesov\Vcard\Entity\Relation:
-    type: entity
-    table: he_vcard_relation
-    repositoryClass: Yalesov\Vcard\Repository\Relation
-    fields:
-        id:
-            id: true
-            type: integer
-            generator:
-                strategy: AUTO
-        value:
-            type: string
-            nullable: true
+  type: entity
+  table: he_vcard_relation
+  repositoryClass: Yalesov\Vcard\Repository\Relation
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: AUTO
+    value:
+      type: string
+      nullable: true
 
-    oneToOne:
-        param:
-            targetEntity: Yalesov\Vcard\Entity\Param
-    manyToMany:
-        relationTypes:
-            targetEntity: Yalesov\Vcard\Entity\RelationType
+  oneToOne:
+    param:
+      targetEntity: Yalesov\Vcard\Entity\Param
+  manyToMany:
+    relationTypes:
+      targetEntity: Yalesov\Vcard\Entity\RelationType
